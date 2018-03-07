@@ -2,7 +2,7 @@ I would like to thank the people who helped me put this demo together:
 
 	- Ryan Bedard: For all of the artwork, reviewing my code, and helping me test.
 
-	- Joel Parris: For the OpenGl/MFC sample code athttp://pws.prserv.net/mfcogl/OpenGL%20in%20a%20Portion%20of%20%20Dialog%20Box.htm upon which this demo was based.
+	- Joel Parris: For the OpenGl/MFC sample code at http://pws.prserv.net/mfcogl/OpenGL%20in%20a%20Portion%20of%20%20Dialog%20Box.htm upon which this demo was based.
 
 		- Jeff Molofee: For the OpenGL sample code athttp://nehe.gamedev.net/data/lessons/lesson.asp?lesson=03 upon which Joel's sample was partly based.
 
@@ -11,6 +11,3 @@ I would like to thank the people who helped me put this demo together:
 	- Pierre Alliez: For the sample code at http://www.codeguru.com/opengl/texture_mapping.shtml that I used to implement my texture mapping.
 
 	- Steve Rabin: For suggesting features, reviewing my code, and helping me test.
-
-Euan Forrester
-euan_forrester@pobox.com
