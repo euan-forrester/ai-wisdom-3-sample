@@ -1,0 +1,286 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\Intelligent Steering Using Adaptive PID Controllers.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\Intelligent Steering Using Adaptive PID Controllers.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About Intelligent Steering Using Adaptive PID Controllers"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "Intelligent Steering Using Adaptive PID Controllers",
+                    IDC_STATIC,40,10,125,18,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2005",IDC_STATIC,40,33,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,16,WS_GROUP
+END
+
+IDD_INTELLIGENTSTEERINGUSINGADAPTIVEPIDCONTROLLERS_DIALOG DIALOGEX 0, 0, 677, 407
+STYLE DS_ABSALIGN | DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | 
+    WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Intelligent Steering Using Adaptive PID Controllers"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "Pause",IDC_CHECK_PAUSE_WORLD,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,528,380,138,18
+    LTEXT           "Missile Control:",IDC_STATIC,528,6,60,11
+    LTEXT           "Target Control:",IDC_STATIC,528,58,70,11
+    LTEXT           "Missile Steering:",IDC_STATIC,529,276,63,8
+    LTEXT           "Missile Acceleration:",IDC_STATIC,528,106,71,8
+    LTEXT           "Target Speed:",IDC_STATIC,528,226,78,8
+    PUSHBUTTON      "Reset Sliders",IDC_BUTTON_RESET_SLIDERS,528,356,138,18
+    LTEXT           "P:",IDC_STATIC,541,289,9,8
+    LTEXT           "I:",IDC_STATIC,541,306,9,8
+    LTEXT           "D:",IDC_STATIC,541,324,8,8
+    EDITTEXT        IDC_EDIT_MISSILE_STEERING_P,553,289,19,12,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_BORDER
+    EDITTEXT        IDC_EDIT_MISSILE_STEERING_I,553,306,19,12,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_BORDER
+    EDITTEXT        IDC_EDIT_MISSILE_STEERING_D,553,324,19,12,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_BORDER
+    CONTROL         "",IDC_SLIDER_MISSILE_STEERING_P,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,577,289,60,12
+    CONTROL         "",IDC_SLIDER_MISSILE_STEERING_I,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,577,306,60,12
+    CONTROL         "",IDC_SLIDER_MISSILE_STEERING_D,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,577,324,60,12
+    PUSHBUTTON      "?",IDC_BUTTON_HELP_P_COEFFICIENT,643,289,18,12
+    PUSHBUTTON      "?",IDC_BUTTON_HELP_I_COEFFICIENT,643,306,18,12
+    PUSHBUTTON      "?",IDC_BUTTON_HELP_D_COEFFICIENT,643,324,18,12
+    EDITTEXT        IDC_EDIT_MISSILE_ACCELERATION,546,118,24,12,
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER
+    CONTROL         "",IDC_SLIDER_MISSILE_ACCELERATION,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,576,118,60,12
+    EDITTEXT        IDC_EDIT_TARGET_SPEED,546,238,24,12,ES_AUTOHSCROLL | 
+                    ES_READONLY | NOT WS_BORDER
+    CONTROL         "",IDC_SLIDER_TARGET_SPEED,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,576,232,60,12
+    CONTROL         "",IDC_OPENGLWIN,"Static",SS_BLACKFRAME,12,6,498,390
+    LTEXT           "Missile Rotational Drag:",IDC_STATIC,528,136,90,8
+    EDITTEXT        IDC_EDIT_MISSILE_ROTATIONAL_DRAG,546,148,24,12,
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER
+    CONTROL         "",IDC_SLIDER_MISSILE_ROTATIONAL_DRAG,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,576,148,60,12
+    LTEXT           "Missile Max Angular Acceleration:",IDC_STATIC,528,166,
+                    126,8
+    EDITTEXT        IDC_EDIT_MISSILE_MAX_ANGULAR_ACCELERATION,546,178,24,12,
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER
+    CONTROL         "",IDC_SLIDER_MISSILE_MAX_ANGULAR_ACCELERATION,
+                    "msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,
+                    576,178,60,12
+    LTEXT           "Missile PID output scale:",IDC_STATIC,528,196,126,8
+    EDITTEXT        IDC_EDIT_MISSILE_PID_OUTPUT_SCALE,546,209,24,12,
+                    ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER
+    CONTROL         "",IDC_SLIDER_MISSILE_PID_OUTPUT_SCALE,"msctls_trackbar32",
+                    TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,576,209,60,12
+    CONTROL         "Adaptive PID Controller",
+                    IDC_RADIO_MISSILE_CONTROL_ADAPTIVE_PID,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,534,18,96,8
+    CONTROL         "PID Controller",IDC_RADIO_MISSILE_CONTROL_PID,"Button",
+                    BS_AUTORADIOBUTTON,534,30,83,8
+    CONTROL         "Keyboard (numpad)",IDC_RADIO_MISSILE_CONTROL_KEYBOARD,
+                    "Button",BS_AUTORADIOBUTTON,534,42,96,8
+    CONTROL         "Automatic",IDC_RADIO_TARGET_CONTROL_AUTOMATIC,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,534,72,86,8
+    CONTROL         "Keyboard (W-A-S-D)",IDC_RADIO_TARGET_CONTROL_KEYBOARD,
+                    "Button",BS_AUTORADIOBUTTON,534,84,92,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Company name>"
+            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "Intelligent Steering Using Adaptive PID Controllers.exe"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "OriginalFilename", "Intelligent Steering Using Adaptive PID Controllers.exe"
+            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_INTELLIGENTSTEERINGUSINGADAPTIVEPIDCONTROLLERS_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 670
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 400
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About Intelligent Steering Using Adaptive PID Controllers..."
+    IDS_HELP_CAPTION        "Intelligent Steering Using Adaptive PID Controllers"
+    IDS_HELP_P_COEFFICIENT  "P: This is the coefficient of the term that is proportional to the current value of the error."
+    IDS_HELP_I_COEFFICIENT  "I: This is the coefficient of the term that is proportional to the integral (sum over time) of the error."
+    IDS_HELP_D_COEFFICIENT  "D: This is the coefficient of the term that is proportional to the current derivative (rate of change) of the error."
+    IDS_ERROR_EXPLANATION   "\n\nThe error is the difference between the desired direction of the missile (towards the target) and its current direction."
+    IDS_EQUATION            "\n\nThe PID controller's equation looks like this:\n\nSteering output = P * <current error> + I * <integral of error> + D * <derivative of error>"
+    IDS_TEXTURE_DIRECTORY   "Textures\\"
+    IDS_TARGET_TEXTURE      "target.raw"
+    IDS_PID_TEXTBOX_NUMBER_FORMAT "%2.1f"
+    IDS_ACCELERATION_SPEED_TEXTBOX_NUMBER_FORMAT "%4.0f"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_HELP_P_COEFFICIENT_2 
+                            "\n\nIncreasing this value will make the missile turn more quickly towards the target. Making this value negative will make the missile turn away from the target."
+    IDS_HELP_I_COEFFICIENT_2 
+                            "\n\nIncreasing this value will give the missile more 'momentum' as it turns, possibly causing it to overshoot the target. Making this value negative will make the missile turn away from the target. "
+    IDS_HELP_D_COEFFICIENT_2 
+                            "\n\nIncreasing this value will give the missile more dampening as it turns, reducing its tendancy to overshoot the target. Making this value negative will cause the missile to dramatically overshoot the target, and large negative values will result in erratic behavior."
+    IDS_MISSILE_TEXTURE_NO_FLAME "missile_no_flame.raw"
+    IDS_MISSILE_TEXTURE_FLAME_1 "missile_flame_1.raw"
+    IDS_MISSILE_TEXTURE_FLAME_2 "missile_flame_2.raw"
+    IDS_MISSILE_TEXTURE_FLAME_3 "missile_flame_3.raw"
+    IDS_EXPLOSION_TEXTURE   "explosion.raw"
+    IDS_ROTATIONAL_DRAG_NUMBER_FORMAT "%1.3f"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\Intelligent Steering Using Adaptive PID Controllers.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
