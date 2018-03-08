@@ -18,51 +18,51 @@ CVector2::CVector2(float initial_x, float initial_y) : x(initial_x), y(initial_y
 
 CVector2 CVector2::operator+(const CVector2 &v1)
 {
-	CVector2 v2(x + v1.x, y + v1.y);
+    CVector2 v2(x + v1.x, y + v1.y);
 
-	return v2;
+    return v2;
 }
 
 CVector2 &CVector2::operator+=(const CVector2 &v1)
 {
-	x += v1.x;
-	y += v1.y;
+    x += v1.x;
+    y += v1.y;
 
-	return *this;
+    return *this;
 }
 
 CVector2 CVector2::operator-(const CVector2 &v1)
 {
-	CVector2 v2(x - v1.x, y - v1.y);
+    CVector2 v2(x - v1.x, y - v1.y);
 
-	return v2;
+    return v2;
 }
 
 CVector2 CVector2::operator-()
 {
-	CVector2 v1(-x, -y);
+    CVector2 v1(-x, -y);
 
-	return v1;
+    return v1;
 }
 
 CVector2 CVector2::operator*(float scale)
 {
-	CVector2 v1(x * scale, y * scale);
+    CVector2 v1(x * scale, y * scale);
 
-	return v1;
+    return v1;
 }
 
 CVector2 &CVector2::operator*=(float scale)
 {
-	x *= scale;
-	y *= scale;
+    x *= scale;
+    y *= scale;
 
-	return *this;
+    return *this;
 }
 
 float CVector2::GetLength()
 {
-	return (float)sqrt(GetDotProduct(this, this));
+    return (float)sqrt(GetDotProduct(this, this));
 }
 
 //
@@ -72,7 +72,7 @@ float CVector2::GetLength()
 
 float CVector2::GetAngle()
 {
-	return RAD2DEG((float)atan2(x, y));
+    return RAD2DEG((float)atan2(x, y));
 }
 
 //
@@ -82,16 +82,16 @@ float CVector2::GetAngle()
 
 void CVector2::Rotate(float angle_in_degrees)
 {
-	float angle_in_radians	= DEG2RAD(angle_in_degrees);
+    float angle_in_radians	= DEG2RAD(angle_in_degrees);
 
-	float cosine			= (float)cos(angle_in_radians);
-	float sine				= (float)sin(angle_in_radians);
-							
-	float new_x				= (x * cosine)	- (y * sine);
-	float new_y				= (x * sine)	+ (y * cosine);
+    float cosine			= (float)cos(angle_in_radians);
+    float sine				= (float)sin(angle_in_radians);
 
-	x						= new_x;
-	y						= new_y;
+    float new_x				= (x * cosine)	- (y * sine);
+    float new_y				= (x * sine)	+ (y * cosine);
+
+    x						= new_x;
+    y						= new_y;
 }
 
 //
@@ -100,20 +100,20 @@ void CVector2::Rotate(float angle_in_degrees)
 
 void CVector2::Normalize(float new_length)
 {
-	float current_length = GetLength();
+    float current_length = GetLength();
 
-	if (fabs(current_length) > 0.0001f)
-	{
-		float scale = new_length / current_length;
+    if (fabs(current_length) > 0.0001f)
+    {
+        float scale = new_length / current_length;
 
-		x *= scale;
-		y *= scale;
-	}
-	else
-	{
-		x = new_length;
-		y = 0.0f;
-	}
+        x *= scale;
+        y *= scale;
+    }
+    else
+    {
+        x = new_length;
+        y = 0.0f;
+    }
 }
 
 //
@@ -122,9 +122,9 @@ void CVector2::Normalize(float new_length)
 
 float GetDistanceBetween(CVector2 *v1, CVector2 *v2)
 {
-	CVector2 difference = *v1 - *v2;
+    CVector2 difference = *v1 - *v2;
 
-	return difference.GetLength();
+    return difference.GetLength();
 }
 
 //
@@ -133,7 +133,7 @@ float GetDistanceBetween(CVector2 *v1, CVector2 *v2)
 
 float GetDotProduct(CVector2 *v1, CVector2 *v2)
 {
-	return (v1->x * v2->x) + (v1->y * v2->y);
+    return (v1->x * v2->x) + (v1->y * v2->y);
 }
 
 //
@@ -142,7 +142,7 @@ float GetDotProduct(CVector2 *v1, CVector2 *v2)
 
 float Clamp(float current_value, float min_value, float max_value)
 {
-	return min(max(current_value, min_value), max_value);
+    return min(max(current_value, min_value), max_value);
 }
 
 //
@@ -151,18 +151,18 @@ float Clamp(float current_value, float min_value, float max_value)
 
 float Sign(float x)
 {
-	if (x > 0.0f)
-	{
-		return 1.0f;
-	}
-	else if (x < 0.0f)
-	{
-		return -1.0f;
-	}
-	else
-	{
-		return 0.0f;
-	}
+    if (x > 0.0f)
+    {
+        return 1.0f;
+    }
+    else if (x < 0.0f)
+    {
+        return -1.0f;
+    }
+    else
+    {
+        return 0.0f;
+    }
 }
 
 //
@@ -171,5 +171,5 @@ float Sign(float x)
 
 bool Equal(float x1, float x2)
 {
-	return (fabs(x1 - x2) < 0.001f);
+    return (fabs(x1 - x2) < 0.001f);
 }

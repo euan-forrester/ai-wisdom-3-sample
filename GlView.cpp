@@ -32,10 +32,10 @@ CGlView::~CGlView()
 
 
 BEGIN_MESSAGE_MAP(CGlView, CWnd)
-	//{{AFX_MSG_MAP(CGlView)
+    //{{AFX_MSG_MAP(CGlView)
 //	ON_WM_DESTROY()
 //	ON_WM_ERASEBKGND()
-	//}}AFX_MSG_MAP
+    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 
@@ -47,33 +47,33 @@ int CGlView::OnCreate()
 {
     if (!SetPixelformat(m_hDC))
     {
-		::MessageBox(::GetFocus(),"SetPixelformat Failed!","Error",MB_OK);
-		return -1;
+        ::MessageBox(::GetFocus(),"SetPixelformat Failed!","Error",MB_OK);
+        return -1;
     }
 
     m_hglRC = wglCreateContext(m_hDC);
     int i = wglMakeCurrent(m_hDC,m_hglRC);
 
-	InitGL();
-	
-	return 0;
+    InitGL();
+
+    return 0;
 }
 
 /*
 void CGlView::OnDestroy() 
 {
-	CWnd::OnDestroy();
-	
-	// TODO: Add your message handler code here
+    CWnd::OnDestroy();
+
+    // TODO: Add your message handler code here
     wglMakeCurrent(NULL,NULL);
     wglDeleteContext(m_hglRC);	
-	
+
 }
 
 
 BOOL CGlView::OnEraseBkgnd(CDC* pDC) 
 {
-	// TODO: Add your message handler code here and/or call default
+    // TODO: Add your message handler code here and/or call default
     return TRUE;	
 //	return CWnd::OnEraseBkgnd(pDC);
 }
@@ -86,26 +86,26 @@ BOOL CGlView::SetPixelformat(HDC hdc)
     int pixelformat; 
  
     PIXELFORMATDESCRIPTOR pfd = 
-	{ 
-		sizeof(PIXELFORMATDESCRIPTOR),  //  size of this pfd 
-		1,                     // version number 
-		PFD_DRAW_TO_WINDOW |   // support window 
-		PFD_SUPPORT_OPENGL |   // support OpenGL 
-		PFD_GENERIC_FORMAT |
-		PFD_DOUBLEBUFFER,      // double buffered 
-		PFD_TYPE_RGBA,         // RGBA type 
-		32,                    // 24-bit color depth 
-		0, 0, 0, 0, 0, 0,      // color bits ignored 
-		8,                     // no alpha buffer 
-		0,                     // shift bit ignored 
-		8,                     // no accumulation buffer 
-		0, 0, 0, 0,            // accum bits ignored 
-		64,                    // 32-bit z-buffer	 
-		8,                     // no stencil buffer 
-		8,                     // no auxiliary buffer 
-		PFD_MAIN_PLANE,        // main layer 
-		0,                     // reserved 
-		0, 0, 0                // layer masks ignored 
+    {
+        sizeof(PIXELFORMATDESCRIPTOR),  //  size of this pfd
+        1,                     // version number
+        PFD_DRAW_TO_WINDOW |   // support window
+        PFD_SUPPORT_OPENGL |   // support OpenGL
+        PFD_GENERIC_FORMAT |
+        PFD_DOUBLEBUFFER,      // double buffered
+        PFD_TYPE_RGBA,         // RGBA type
+        32,                    // 24-bit color depth
+        0, 0, 0, 0, 0, 0,      // color bits ignored
+        8,                     // no alpha buffer
+        0,                     // shift bit ignored
+        8,                     // no accumulation buffer
+        0, 0, 0, 0,            // accum bits ignored
+        64,                    // 32-bit z-buffer
+        8,                     // no stencil buffer
+        8,                     // no auxiliary buffer
+        PFD_MAIN_PLANE,        // main layer
+        0,                     // reserved
+        0, 0, 0                // layer masks ignored
     }; 
 
     ppfd = &pfd;
@@ -132,49 +132,49 @@ const float FarClipPlane = 10.0f;
 
 GLvoid CGlView::ReSizeGLScene(GLsizei width, GLsizei height, CWorld *world)	// Resize And Initialize The GL Window
 {
-	if (height == 0)									// Prevent A Divide By Zero By
-	{
-		height = 1;										// Making Height Equal One
-	}
+    if (height == 0)									// Prevent A Divide By Zero By
+    {
+        height = 1;										// Making Height Equal One
+    }
 
-	glViewport(0, 0, width, height);	// Reset The Current Viewport
+    glViewport(0, 0, width, height);	// Reset The Current Viewport
 
-	glMatrixMode(GL_PROJECTION);		// Select The Projection Matrix
-	glLoadIdentity();					// Reset The Projection Matrix
+    glMatrixMode(GL_PROJECTION);		// Select The Projection Matrix
+    glLoadIdentity();					// Reset The Projection Matrix
 
-	CVector2 *world_center = world->GetCenter();
+    CVector2 *world_center = world->GetCenter();
 
-	glOrtho(world_center->x - (world->GetSize() / 2.0f), world_center->x + (world->GetSize() / 2.0f), 
-			world_center->y - (world->GetSize() / 2.0f), world_center->y + (world->GetSize() / 2.0f), 
-			NearClipPlane, FarClipPlane);
+    glOrtho(world_center->x - (world->GetSize() / 2.0f), world_center->x + (world->GetSize() / 2.0f),
+            world_center->y - (world->GetSize() / 2.0f), world_center->y + (world->GetSize() / 2.0f),
+            NearClipPlane, FarClipPlane);
 
-	glMatrixMode(GL_MODELVIEW);							// Select The Modelview Matrix
-	glLoadIdentity();									// Reset The Modelview Matrix
+    glMatrixMode(GL_MODELVIEW);							// Select The Modelview Matrix
+    glLoadIdentity();									// Reset The Modelview Matrix
 }
 
 
 int CGlView::InitGL(GLvoid)								// All Setup For OpenGL Goes Here
 {
-	glShadeModel(GL_SMOOTH);							// Enable Smooth Shading
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);				// White Background
-	glDisable(GL_DEPTH_TEST);							// Disables Depth Testing
+    glShadeModel(GL_SMOOTH);							// Enable Smooth Shading
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);				// White Background
+    glDisable(GL_DEPTH_TEST);							// Disables Depth Testing
 
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 
-	return TRUE;										// Initialization Went OK
+    return TRUE;										// Initialization Went OK
 }
 
 int CGlView::BeginDrawGLScene(GLvoid)
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear Screen And Depth Buffer
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear Screen And Depth Buffer
 
-	return TRUE;
+    return TRUE;
 }
 
 int CGlView::EndDrawGLScene(GLvoid)
 {
     SwapBuffers(m_hDC);
 
-	return TRUE;
+    return TRUE;
 }

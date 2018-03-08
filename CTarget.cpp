@@ -32,23 +32,23 @@ const float TargetExplosionSizeFactor			= 15.0f;		// By how many times does each
 
 CTarget::CTarget()
 {
-	m_ControlMode			= eTARGET_CONTROL_AUTOMATIC;
+    m_ControlMode			= eTARGET_CONTROL_AUTOMATIC;
 
-	Reset();
+    Reset();
 }
 
 void CTarget::Reset()
 {
-	m_CurrentState			= eTARGET_STATE_MOVING;
+    m_CurrentState			= eTARGET_STATE_MOVING;
 
-	m_Direction.x			= (rand() < (RAND_MAX / 2)) ? -1.0f : 1.0f;
-	m_Direction.y			= 0.0f;
+    m_Direction.x			= (rand() < (RAND_MAX / 2)) ? -1.0f : 1.0f;
+    m_Direction.y			= 0.0f;
 
-	m_Position.x			= 0.0f; 
-	m_Position.y			= 0.0f;
+    m_Position.x			= 0.0f;
+    m_Position.y			= 0.0f;
 
-	m_UserDesiredVelocity.x	= 0.0f; 
-	m_UserDesiredVelocity.y	= 0.0f; 
+    m_UserDesiredVelocity.x	= 0.0f;
+    m_UserDesiredVelocity.y	= 0.0f;
 }
 
 //
@@ -57,7 +57,7 @@ void CTarget::Reset()
 
 void CTarget::SetTexture(const char *filename, int index, int width, int height, int bit_depth)
 {
-	m_Texture[index].ReadFile(filename, width, height, bit_depth); 
+    m_Texture[index].ReadFile(filename, width, height, bit_depth);
 }
 
 //
@@ -66,7 +66,7 @@ void CTarget::SetTexture(const char *filename, int index, int width, int height,
 
 float CTarget::GetSize()
 {
-	return TargetSize;
+    return TargetSize;
 }
 
 //
@@ -76,7 +76,7 @@ float CTarget::GetSize()
 
 float CTarget::GetNumSecondsToExplode()
 {
-	return TargetNumSecondsToExplode;
+    return TargetNumSecondsToExplode;
 }
 
 //
@@ -86,7 +86,7 @@ float CTarget::GetNumSecondsToExplode()
 
 float CTarget::GetMaxAngularVelocity()
 {
-	return TargetMaxAngularVelocity;
+    return TargetMaxAngularVelocity;
 }
 
 //
@@ -95,8 +95,8 @@ float CTarget::GetMaxAngularVelocity()
 
 void CTarget::Explode()
 {
-	m_CurrentState		= eTARGET_STATE_EXPLODING;
-	m_ExplosionTimeLeft	= GetNumSecondsToExplode();
+    m_CurrentState		= eTARGET_STATE_EXPLODING;
+    m_ExplosionTimeLeft	= GetNumSecondsToExplode();
 }
 
 //
@@ -105,135 +105,135 @@ void CTarget::Explode()
 
 void CTarget::Move(float timestep)
 {
-	switch (m_CurrentState)
-	{
-		case eTARGET_STATE_MOVING:
-		{
-			//
-			// If we're moving, what we do depends on our current control mode
-			//
+    switch (m_CurrentState)
+    {
+        case eTARGET_STATE_MOVING:
+        {
+            //
+            // If we're moving, what we do depends on our current control mode
+            //
 
-			switch (m_ControlMode)
-			{
-				case eTARGET_CONTROL_AUTOMATIC:
-				{
-					//
-					// For our automatic movement, randomly perturb our current direction
-					// by a small amount, and then move forward at our maximum speed
-					//
-					
-					float max_angular_velocity	= GetMaxAngularVelocity();
-					float max_speed				= GetMaxSpeed();
-					
-					float direction_change		= ((float)rand() / (float)RAND_MAX) * max_angular_velocity * 2.0f;
-					direction_change			-= max_angular_velocity; // Make direction_change be between max_angular_velocity and -max_angular_velocity
-					direction_change			*= timestep;
+            switch (m_ControlMode)
+            {
+                case eTARGET_CONTROL_AUTOMATIC:
+                {
+                    //
+                    // For our automatic movement, randomly perturb our current direction
+                    // by a small amount, and then move forward at our maximum speed
+                    //
 
-					m_Direction.Rotate(direction_change);
+                    float max_angular_velocity	= GetMaxAngularVelocity();
+                    float max_speed				= GetMaxSpeed();
 
-					// Steer towards the center of the world because our motion is 
-					// less interesting at its edges. Modulate the steering force 
-					// based on distance to the center squared
+                    float direction_change		= ((float)rand() / (float)RAND_MAX) * max_angular_velocity * 2.0f;
+                    direction_change			-= max_angular_velocity; // Make direction_change be between max_angular_velocity and -max_angular_velocity
+                    direction_change			*= timestep;
 
-					CVector2	vector_to_center_of_world		= *m_pCurrentWorld->GetCenter() - m_Position;
-					float		distance_to_center_of_world		= vector_to_center_of_world.GetLength();
+                    m_Direction.Rotate(direction_change);
 
-					CVector2	center_steering					= vector_to_center_of_world;
-					float		center_steering_amount			= distance_to_center_of_world * distance_to_center_of_world * TargetSteerToCenterOfWorldFactor;
+                    // Steer towards the center of the world because our motion is
+                    // less interesting at its edges. Modulate the steering force
+                    // based on distance to the center squared
 
-					center_steering.Normalize(center_steering_amount);
+                    CVector2	vector_to_center_of_world		= *m_pCurrentWorld->GetCenter() - m_Position;
+                    float		distance_to_center_of_world		= vector_to_center_of_world.GetLength();
 
-					m_Direction += (center_steering * timestep);
-					m_Direction.Normalize();
+                    CVector2	center_steering					= vector_to_center_of_world;
+                    float		center_steering_amount			= distance_to_center_of_world * distance_to_center_of_world * TargetSteerToCenterOfWorldFactor;
 
-					CVector2 velocity = m_Direction;
-					velocity.Normalize(max_speed);
+                    center_steering.Normalize(center_steering_amount);
 
-					m_Position += velocity * timestep;
+                    m_Direction += (center_steering * timestep);
+                    m_Direction.Normalize();
 
-					break;
-				}
+                    CVector2 velocity = m_Direction;
+                    velocity.Normalize(max_speed);
 
-				case eTARGET_CONTROL_KEYBOARD:
-				{
-					//
-					// Update our direction based on our desired velocity
-					//
+                    m_Position += velocity * timestep;
 
-					float user_desired_speed	= m_UserDesiredVelocity.GetLength();
-					float max_speed				= GetMaxSpeed();
+                    break;
+                }
 
-					if (user_desired_speed > 0.0f)
-					{
-						m_Direction = m_UserDesiredVelocity;
-						m_Direction.Normalize();
-					}
-					
-					//
-					// Move us based on our current velocity
-					//
-					
-					if (user_desired_speed > max_speed)
-					{
-						m_UserDesiredVelocity.Normalize(max_speed);
-					}
+                case eTARGET_CONTROL_KEYBOARD:
+                {
+                    //
+                    // Update our direction based on our desired velocity
+                    //
 
-					m_Position += m_UserDesiredVelocity * timestep;
+                    float user_desired_speed	= m_UserDesiredVelocity.GetLength();
+                    float max_speed				= GetMaxSpeed();
 
-					break;
-				}
+                    if (user_desired_speed > 0.0f)
+                    {
+                        m_Direction = m_UserDesiredVelocity;
+                        m_Direction.Normalize();
+                    }
 
-				default:
-				{
-					TRACE("Unknown control mode %d for target!\n", m_ControlMode);
+                    //
+                    // Move us based on our current velocity
+                    //
 
-					break;
-				}
-			}
+                    if (user_desired_speed > max_speed)
+                    {
+                        m_UserDesiredVelocity.Normalize(max_speed);
+                    }
 
-			break;
-		}
+                    m_Position += m_UserDesiredVelocity * timestep;
 
-		case eTARGET_STATE_EXPLODING:
-		{
-			m_ExplosionTimeLeft -= timestep;
+                    break;
+                }
 
-			if (m_ExplosionTimeLeft < 0.0f)
-			{
-				m_ExplosionTimeLeft	= 0.0f;
-				m_CurrentState		= eTARGET_STATE_FINISHED_EXPLODING;
-			}
+                default:
+                {
+                    TRACE("Unknown control mode %d for target!\n", m_ControlMode);
 
-			// Fall through to the next case
-		}
+                    break;
+                }
+            }
 
-		case eTARGET_STATE_FINISHED_EXPLODING:
-		{
-			// Nothing to do if we're not moving
+            break;
+        }
 
-			break;
-		}
+        case eTARGET_STATE_EXPLODING:
+        {
+            m_ExplosionTimeLeft -= timestep;
 
-		default:
-		{
-			TRACE("Unknown target state: %d\n", m_CurrentState);
+            if (m_ExplosionTimeLeft < 0.0f)
+            {
+                m_ExplosionTimeLeft	= 0.0f;
+                m_CurrentState		= eTARGET_STATE_FINISHED_EXPLODING;
+            }
 
-			break;
-		}
-	}
+            // Fall through to the next case
+        }
 
-	//
-	// Simple logic to keep us within the world
-	//
+        case eTARGET_STATE_FINISHED_EXPLODING:
+        {
+            // Nothing to do if we're not moving
 
-	float my_half_size		= GetSize() / 2.0f;
-	float world_half_size	= m_pCurrentWorld->GetSize() / 2.0f;
+            break;
+        }
 
-	float furthest_negative	= -world_half_size	+ my_half_size;
-	float furthest_positive	= world_half_size	- my_half_size;
+        default:
+        {
+            TRACE("Unknown target state: %d\n", m_CurrentState);
 
-	m_Position.x			= Clamp(m_Position.x, furthest_negative, furthest_positive);
-	m_Position.y			= Clamp(m_Position.y, furthest_negative, furthest_positive);
+            break;
+        }
+    }
+
+    //
+    // Simple logic to keep us within the world
+    //
+
+    float my_half_size		= GetSize() / 2.0f;
+    float world_half_size	= m_pCurrentWorld->GetSize() / 2.0f;
+
+    float furthest_negative	= -world_half_size	+ my_half_size;
+    float furthest_positive	= world_half_size	- my_half_size;
+
+    m_Position.x			= Clamp(m_Position.x, furthest_negative, furthest_positive);
+    m_Position.y			= Clamp(m_Position.y, furthest_negative, furthest_positive);
 }
 
 //
@@ -242,76 +242,76 @@ void CTarget::Move(float timestep)
 
 int CTarget::Draw(CGlView *gl_view)
 {
-	eTargetTexture	texture_to_use		= eTARGET_TEXTURE_NORMAL;
-	float			target_half_size	= GetSize() / 2.0f;	
-	float			texture_alpha		= 1.0f;
+    eTargetTexture	texture_to_use		= eTARGET_TEXTURE_NORMAL;
+    float			target_half_size	= GetSize() / 2.0f;
+    float			texture_alpha		= 1.0f;
 
-	switch (m_CurrentState)
-	{
-		case eTARGET_STATE_MOVING:
-		{
-			// Nothing to do -- just use the default values above
+    switch (m_CurrentState)
+    {
+        case eTARGET_STATE_MOVING:
+        {
+            // Nothing to do -- just use the default values above
 
-			break;
-		}
+            break;
+        }
 
-		case eTARGET_STATE_EXPLODING:
-		{
-			texture_to_use = eTARGET_TEXTURE_EXPLOSION;
+        case eTARGET_STATE_EXPLODING:
+        {
+            texture_to_use = eTARGET_TEXTURE_EXPLOSION;
 
-			// Make the explosion scale and fade over time
-			float explosion_fraction_complete	= (GetNumSecondsToExplode() - m_ExplosionTimeLeft) / GetNumSecondsToExplode(); 
+            // Make the explosion scale and fade over time
+            float explosion_fraction_complete	= (GetNumSecondsToExplode() - m_ExplosionTimeLeft) / GetNumSecondsToExplode();
 
-			float min_explosion_size			= target_half_size;
-			float max_explosion_size			= min_explosion_size * TargetExplosionSizeFactor;
-			target_half_size					= ((max_explosion_size - min_explosion_size) * explosion_fraction_complete) + min_explosion_size;
+            float min_explosion_size			= target_half_size;
+            float max_explosion_size			= min_explosion_size * TargetExplosionSizeFactor;
+            target_half_size					= ((max_explosion_size - min_explosion_size) * explosion_fraction_complete) + min_explosion_size;
 
-			texture_alpha						= 1.0f - explosion_fraction_complete;
+            texture_alpha						= 1.0f - explosion_fraction_complete;
 
-			break;
-		}
+            break;
+        }
 
-		case eTARGET_STATE_FINISHED_EXPLODING:
-		{
-			return TRUE; // Nothing to draw if we're done exploding
+        case eTARGET_STATE_FINISHED_EXPLODING:
+        {
+            return TRUE; // Nothing to draw if we're done exploding
 
-			break;
-		}
+            break;
+        }
 
-		default:
-		{
-			TRACE("Unknown target state: %d\n", m_CurrentState);
+        default:
+        {
+            TRACE("Unknown target state: %d\n", m_CurrentState);
 
-			break;
-		}
-	}
+            break;
+        }
+    }
 
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_TEXTURE_2D);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_TEXTURE_2D);
 
-	if (m_Texture[texture_to_use].GetData() != NULL)
-	{
-		glTexImage2D(GL_TEXTURE_2D, 0, 4, m_Texture[texture_to_use].GetWidth(), 
-			m_Texture[texture_to_use].GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, 
-			m_Texture[texture_to_use].GetData());
-	}
+    if (m_Texture[texture_to_use].GetData() != NULL)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, 4, m_Texture[texture_to_use].GetWidth(),
+            m_Texture[texture_to_use].GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE,
+            m_Texture[texture_to_use].GetData());
+    }
 
-	glLoadIdentity();
-	glTranslatef(m_Position.x, m_Position.y, 0.0f);
-	glRotatef(m_Direction.GetAngle(), 0.0f, 0.0f, -1.0f);
+    glLoadIdentity();
+    glTranslatef(m_Position.x, m_Position.y, 0.0f);
+    glRotatef(m_Direction.GetAngle(), 0.0f, 0.0f, -1.0f);
 
-	glColor4f(1.0f, 1.0f, 1.0f, texture_alpha);									
+    glColor4f(1.0f, 1.0f, 1.0f, texture_alpha);
 
-	glBegin(GL_QUADS);
-		glTexCoord2f(0.0, 1.0); glVertex2f(-target_half_size, -target_half_size);
-		glTexCoord2f(0.0, 0.0); glVertex2f(-target_half_size,  target_half_size);
-		glTexCoord2f(1.0, 0.0); glVertex2f( target_half_size,  target_half_size);
-		glTexCoord2f(1.0, 1.0); glVertex2f( target_half_size, -target_half_size);
-	glEnd();													
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0, 1.0); glVertex2f(-target_half_size, -target_half_size);
+        glTexCoord2f(0.0, 0.0); glVertex2f(-target_half_size,  target_half_size);
+        glTexCoord2f(1.0, 0.0); glVertex2f( target_half_size,  target_half_size);
+        glTexCoord2f(1.0, 1.0); glVertex2f( target_half_size, -target_half_size);
+    glEnd();
 
-	glDisable(GL_TEXTURE_2D);
-	glDisable(GL_BLEND);
+    glDisable(GL_TEXTURE_2D);
+    glDisable(GL_BLEND);
 
-	return TRUE;
+    return TRUE;
 }

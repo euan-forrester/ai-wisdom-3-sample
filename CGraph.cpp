@@ -19,48 +19,48 @@
 
 CGraph::CGraph(int num_control_points, float min_x_value, float max_x_value)
 {
-	m_NumControlPoints	= num_control_points;
-	m_MinXValue			= min_x_value;
-	m_MaxXValue			= max_x_value;
+    m_NumControlPoints	= num_control_points;
+    m_MinXValue			= min_x_value;
+    m_MaxXValue			= max_x_value;
 
-	m_pControlPoint		= new float[m_NumControlPoints];
+    m_pControlPoint		= new float[m_NumControlPoints];
 
-	ASSERT(m_NumControlPoints > 1);
-	ASSERT((m_MinXValue < m_MaxXValue) && !Equal(m_MinXValue, m_MaxXValue));
+    ASSERT(m_NumControlPoints > 1);
+    ASSERT((m_MinXValue < m_MaxXValue) && !Equal(m_MinXValue, m_MaxXValue));
 }
 
 CGraph::~CGraph()
 {
-	delete [] m_pControlPoint;
+    delete [] m_pControlPoint;
 }
 
 float CGraph::GetValue(float x_value)
 {
-	//
-	// First, check if our x value is outside of the range
-	//
+    //
+    // First, check if our x value is outside of the range
+    //
 
-	if (x_value <= m_MinXValue)
-	{
-		return m_pControlPoint[0];
-	}
-	else if (x_value >= m_MaxXValue)
-	{
-		return m_pControlPoint[m_NumControlPoints - 1];
-	}
-	else
-	{
-		//
-		// Our x value is inside of our range, so we must linearily interpolate
-		//
+    if (x_value <= m_MinXValue)
+    {
+        return m_pControlPoint[0];
+    }
+    else if (x_value >= m_MaxXValue)
+    {
+        return m_pControlPoint[m_NumControlPoints - 1];
+    }
+    else
+    {
+        //
+        // Our x value is inside of our range, so we must linearily interpolate
+        //
 
-		float	exact_control_point			= (x_value - m_MinXValue) / ((m_MaxXValue - m_MinXValue) / (float)(m_NumControlPoints - 1));
-		int		left_index					= (int)exact_control_point;
-		int		right_index					= left_index + 1;
-		float	fractional_control_point	= exact_control_point - (float)left_index;
+        float	exact_control_point			= (x_value - m_MinXValue) / ((m_MaxXValue - m_MinXValue) / (float)(m_NumControlPoints - 1));
+        int		left_index					= (int)exact_control_point;
+        int		right_index					= left_index + 1;
+        float	fractional_control_point	= exact_control_point - (float)left_index;
 
-		float y_value = m_pControlPoint[left_index] + (m_pControlPoint[right_index] - m_pControlPoint[left_index]) * fractional_control_point;
+        float y_value = m_pControlPoint[left_index] + (m_pControlPoint[right_index] - m_pControlPoint[left_index]) * fractional_control_point;
 
-		return y_value;
-	}
+        return y_value;
+    }
 }

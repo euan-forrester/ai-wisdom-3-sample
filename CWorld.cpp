@@ -34,44 +34,44 @@ const int	ExplosionTextureBitDepth	= 32;
 
 CWorld::CWorld()
 {
-	int i = 0;
-	
-	CString texture_directory;
-	CString missile_texture_filename[NUM_MISSILE_TEXTURES];
-	CString target_texture_filename[NUM_TARGET_TEXTURES];
+    int i = 0;
 
-	texture_directory.LoadString(IDS_TEXTURE_DIRECTORY);
-	missile_texture_filename[eMISSILE_TEXTURE_NO_FLAME].LoadString(IDS_MISSILE_TEXTURE_NO_FLAME);
-	missile_texture_filename[eMISSILE_TEXTURE_FLAME_1].LoadString(IDS_MISSILE_TEXTURE_FLAME_1);
-	missile_texture_filename[eMISSILE_TEXTURE_FLAME_2].LoadString(IDS_MISSILE_TEXTURE_FLAME_2);
-	missile_texture_filename[eMISSILE_TEXTURE_FLAME_3].LoadString(IDS_MISSILE_TEXTURE_FLAME_3);
-	missile_texture_filename[eMISSILE_TEXTURE_EXPLOSION].LoadString(IDS_EXPLOSION_TEXTURE);
+    CString texture_directory;
+    CString missile_texture_filename[NUM_MISSILE_TEXTURES];
+    CString target_texture_filename[NUM_TARGET_TEXTURES];
 
-	target_texture_filename[eTARGET_TEXTURE_NORMAL].LoadString(IDS_TARGET_TEXTURE);
-	target_texture_filename[eTARGET_TEXTURE_EXPLOSION].LoadString(IDS_EXPLOSION_TEXTURE);
+    texture_directory.LoadString(IDS_TEXTURE_DIRECTORY);
+    missile_texture_filename[eMISSILE_TEXTURE_NO_FLAME].LoadString(IDS_MISSILE_TEXTURE_NO_FLAME);
+    missile_texture_filename[eMISSILE_TEXTURE_FLAME_1].LoadString(IDS_MISSILE_TEXTURE_FLAME_1);
+    missile_texture_filename[eMISSILE_TEXTURE_FLAME_2].LoadString(IDS_MISSILE_TEXTURE_FLAME_2);
+    missile_texture_filename[eMISSILE_TEXTURE_FLAME_3].LoadString(IDS_MISSILE_TEXTURE_FLAME_3);
+    missile_texture_filename[eMISSILE_TEXTURE_EXPLOSION].LoadString(IDS_EXPLOSION_TEXTURE);
 
-	m_Center.x	= 0.0f;
-	m_Center.y	= 0.0f;
+    target_texture_filename[eTARGET_TEXTURE_NORMAL].LoadString(IDS_TARGET_TEXTURE);
+    target_texture_filename[eTARGET_TEXTURE_EXPLOSION].LoadString(IDS_EXPLOSION_TEXTURE);
 
-	m_Missile.SetCurrentWorld(this);
-	m_Target.SetCurrentWorld(this);
+    m_Center.x	= 0.0f;
+    m_Center.y	= 0.0f;
 
-	for (i = 0; i <= eMISSILE_TEXTURE_FLAME_3; i++)
-	{
-		m_Missile.SetTexture(texture_directory + missile_texture_filename[i], i, MissileTextureWidth, MissileTextureHeight, MissileTextureBitDepth);
-	}
+    m_Missile.SetCurrentWorld(this);
+    m_Target.SetCurrentWorld(this);
 
-	for (i = 0; i <= eTARGET_TEXTURE_NORMAL; i++)
-	{
-		m_Target.SetTexture(texture_directory + target_texture_filename[i], i, TargetTextureWidth, TargetTextureHeight, TargetTextureBitDepth);
-	}
+    for (i = 0; i <= eMISSILE_TEXTURE_FLAME_3; i++)
+    {
+        m_Missile.SetTexture(texture_directory + missile_texture_filename[i], i, MissileTextureWidth, MissileTextureHeight, MissileTextureBitDepth);
+    }
 
-	m_Missile.SetTexture(texture_directory	+ missile_texture_filename[eMISSILE_TEXTURE_EXPLOSION],	eMISSILE_TEXTURE_EXPLOSION,	ExplosionTextureWidth,	ExplosionTextureHeight,	ExplosionTextureBitDepth);
-	m_Target.SetTexture(texture_directory	+ target_texture_filename[eTARGET_TEXTURE_EXPLOSION],	eTARGET_TEXTURE_EXPLOSION,	ExplosionTextureWidth,	ExplosionTextureHeight,	ExplosionTextureBitDepth);
-	
-	m_Missile.SetTarget(&m_Target);
+    for (i = 0; i <= eTARGET_TEXTURE_NORMAL; i++)
+    {
+        m_Target.SetTexture(texture_directory + target_texture_filename[i], i, TargetTextureWidth, TargetTextureHeight, TargetTextureBitDepth);
+    }
 
-	ResetMissileAndTarget();
+    m_Missile.SetTexture(texture_directory	+ missile_texture_filename[eMISSILE_TEXTURE_EXPLOSION],	eMISSILE_TEXTURE_EXPLOSION,	ExplosionTextureWidth,	ExplosionTextureHeight,	ExplosionTextureBitDepth);
+    m_Target.SetTexture(texture_directory	+ target_texture_filename[eTARGET_TEXTURE_EXPLOSION],	eTARGET_TEXTURE_EXPLOSION,	ExplosionTextureWidth,	ExplosionTextureHeight,	ExplosionTextureBitDepth);
+
+    m_Missile.SetTarget(&m_Target);
+
+    ResetMissileAndTarget();
 }
 
 CWorld::~CWorld()
@@ -85,11 +85,11 @@ CWorld::~CWorld()
 
 void CWorld::ResetMissileAndTarget()
 {
-	m_Missile.Reset();
-	m_Target.Reset();
-	
-	m_Missile.SetPosition(0.0f,	GetSize()	* MissileStartPositionFactor);
-	m_Target.SetPosition(0.0f,	GetSize()	* TargetStartPositionFactor);
+    m_Missile.Reset();
+    m_Target.Reset();
+
+    m_Missile.SetPosition(0.0f,	GetSize()	* MissileStartPositionFactor);
+    m_Target.SetPosition(0.0f,	GetSize()	* TargetStartPositionFactor);
 }
 
 //
@@ -99,15 +99,15 @@ void CWorld::ResetMissileAndTarget()
 
 void CWorld::BeginTimestep()
 {
-	// Reset all of our user desired inputs so that they can be
-	// set again by HandleKeyboardState() based on the current
-	// state of the keyboard
+    // Reset all of our user desired inputs so that they can be
+    // set again by HandleKeyboardState() based on the current
+    // state of the keyboard
 
-	m_Missile.SetUserDesiredAcceleration(0.0f);
-	m_Missile.SetUserDesiredAngularAcceleration(0.0f);
+    m_Missile.SetUserDesiredAcceleration(0.0f);
+    m_Missile.SetUserDesiredAngularAcceleration(0.0f);
 
-	m_Target.SetUserDesiredVelocityX(0.0f);
-	m_Target.SetUserDesiredVelocityY(0.0f);
+    m_Target.SetUserDesiredVelocityX(0.0f);
+    m_Target.SetUserDesiredVelocityY(0.0f);
 }
 
 //
@@ -116,17 +116,17 @@ void CWorld::BeginTimestep()
 
 void CWorld::DoTimestep(float timestep)
 {
-	if (m_Missile.NeedToBeReset() && m_Target.NeedToBeReset())
-	{
-		ResetMissileAndTarget();
-	}
-	
-	m_Target.Move(timestep);
+    if (m_Missile.NeedToBeReset() && m_Target.NeedToBeReset())
+    {
+        ResetMissileAndTarget();
+    }
 
-	m_Missile.Steer(timestep);
-	m_Missile.Move(timestep);
+    m_Target.Move(timestep);
 
-	m_Missile.CheckCollisionWithTarget();
+    m_Missile.Steer(timestep);
+    m_Missile.Move(timestep);
+
+    m_Missile.CheckCollisionWithTarget();
 }
 
 //
@@ -145,7 +145,7 @@ void CWorld::EndTimestep()
 
 float CWorld::GetSize()
 {
-	return WorldSize;
+    return WorldSize;
 }
 
 //
@@ -154,7 +154,7 @@ float CWorld::GetSize()
 
 CVector2 *CWorld::GetCenter()
 {
-	return &m_Center;
+    return &m_Center;
 }
 
 //
@@ -163,85 +163,85 @@ CVector2 *CWorld::GetCenter()
 
 void CWorld::HandleKeyboardState(eKey key, bool state)
 {
-	switch (key)
-	{
-		case eKEY_MISSILE_THRUST:
-		{
-			if (state)
-			{
-				m_Missile.SetUserDesiredAcceleration(m_Missile.GetMaxAcceleration());
-			}
+    switch (key)
+    {
+        case eKEY_MISSILE_THRUST:
+        {
+            if (state)
+            {
+                m_Missile.SetUserDesiredAcceleration(m_Missile.GetMaxAcceleration());
+            }
 
-			break;
-		}
+            break;
+        }
 
-		case eKEY_MISSILE_TURN_LEFT:
-		{
-			if (state)
-			{
-				m_Missile.SetUserDesiredAngularAcceleration(m_Missile.GetMaxAngularAcceleration());
-			}
+        case eKEY_MISSILE_TURN_LEFT:
+        {
+            if (state)
+            {
+                m_Missile.SetUserDesiredAngularAcceleration(m_Missile.GetMaxAngularAcceleration());
+            }
 
-			break;
-		}
+            break;
+        }
 
-		case eKEY_MISSILE_TURN_RIGHT:
-		{
-			if (state)
-			{
-				m_Missile.SetUserDesiredAngularAcceleration(-m_Missile.GetMaxAngularAcceleration());
-			}
+        case eKEY_MISSILE_TURN_RIGHT:
+        {
+            if (state)
+            {
+                m_Missile.SetUserDesiredAngularAcceleration(-m_Missile.GetMaxAngularAcceleration());
+            }
 
-			break;
-		}
+            break;
+        }
 
-		case eKEY_TARGET_MOVE_LEFT:
-		{
-			if (state)
-			{
-				m_Target.SetUserDesiredVelocityX(-m_Target.GetMaxSpeed());
-			}
+        case eKEY_TARGET_MOVE_LEFT:
+        {
+            if (state)
+            {
+                m_Target.SetUserDesiredVelocityX(-m_Target.GetMaxSpeed());
+            }
 
-			break;
-		}
+            break;
+        }
 
-		case eKEY_TARGET_MOVE_RIGHT:
-		{
-			if (state)
-			{
-				m_Target.SetUserDesiredVelocityX(m_Target.GetMaxSpeed());
-			}
+        case eKEY_TARGET_MOVE_RIGHT:
+        {
+            if (state)
+            {
+                m_Target.SetUserDesiredVelocityX(m_Target.GetMaxSpeed());
+            }
 
-			break;
-		}
+            break;
+        }
 
-		case eKEY_TARGET_MOVE_UP:
-		{
-			if (state)
-			{
-				m_Target.SetUserDesiredVelocityY(m_Target.GetMaxSpeed());
-			}
+        case eKEY_TARGET_MOVE_UP:
+        {
+            if (state)
+            {
+                m_Target.SetUserDesiredVelocityY(m_Target.GetMaxSpeed());
+            }
 
-			break;
-		}
+            break;
+        }
 
-		case eKEY_TARGET_MOVE_DOWN:
-		{
-			if (state)
-			{
-				m_Target.SetUserDesiredVelocityY(-m_Target.GetMaxSpeed());
-			}
+        case eKEY_TARGET_MOVE_DOWN:
+        {
+            if (state)
+            {
+                m_Target.SetUserDesiredVelocityY(-m_Target.GetMaxSpeed());
+            }
 
-			break;
-		}
+            break;
+        }
 
-		default:
-		{
-			TRACE("Unknown key %d passed into CWorld::HandleKeyboardState()\n", key);
+        default:
+        {
+            TRACE("Unknown key %d passed into CWorld::HandleKeyboardState()\n", key);
 
-			break;
-		}
-	}
+            break;
+        }
+    }
 }
 
 //
@@ -252,12 +252,12 @@ void CWorld::HandleKeyboardState(eKey key, bool state)
 
 int CWorld::Draw(CGlView *gl_view)
 {
-	gl_view->BeginDrawGLScene();
+    gl_view->BeginDrawGLScene();
 
-	m_Target.Draw(gl_view);
-	m_Missile.Draw(gl_view);
+    m_Target.Draw(gl_view);
+    m_Missile.Draw(gl_view);
 
-	gl_view->EndDrawGLScene();
+    gl_view->EndDrawGLScene();
 
-	return TRUE;
+    return TRUE;
 }

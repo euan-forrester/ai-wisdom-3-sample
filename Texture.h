@@ -23,75 +23,75 @@ class CTexture : public CObject
 // Members datas
 private :
 
-	unsigned char *m_pData;    // datas
-	unsigned int   m_Width;    // width (pixels)
-	unsigned int   m_Height;   // height (pixels)
-	unsigned int   m_Depth;    // bits per pixel 
-	CString        m_FileName; // texture image file name
+    unsigned char *m_pData;    // datas
+    unsigned int   m_Width;    // width (pixels)
+    unsigned int   m_Height;   // height (pixels)
+    unsigned int   m_Depth;    // bits per pixel
+    CString        m_FileName; // texture image file name
 
-	BITMAPINFOHEADER m_Header;      // image header (display on device context)
-	unsigned int     m_WidthByte32; // width (in bytes, and 32 bits aligned)
+    BITMAPINFOHEADER m_Header;      // image header (display on device context)
+    unsigned int     m_WidthByte32; // width (in bytes, and 32 bits aligned)
 
 public :
 
-	// Construction / destruction
-	CTexture();
-	virtual ~CTexture();
+    // Construction / destruction
+    CTexture();
+    virtual ~CTexture();
 
-	// File reading
-	int ReadFile(const char *filename,unsigned int width=-1,unsigned int height=-1,unsigned int depth=-1);
-	int ReadFileBMP(const char *filename);
-	int ReadFileRAW(const char *filename,unsigned int width,unsigned int height,unsigned int depth);
-	
-	// File saving
-	int SaveFile(char *filename);
-	int SaveFileBMP(char *filename);
-	int SaveFileRAW(char *filename);
-	
-	// Datas (explicit inline functions)
-	unsigned char *GetData(void) { return m_pData; }
-	unsigned int GetWidth(void)  { return m_Width; }
-	unsigned int GetHeight(void) { return m_Height;}
-	unsigned int GetDepth(void)  { return m_Depth; }
-	CString GetFileName(void)    { return m_FileName; }
+    // File reading
+    int ReadFile(const char *filename,unsigned int width=-1,unsigned int height=-1,unsigned int depth=-1);
+    int ReadFileBMP(const char *filename);
+    int ReadFileRAW(const char *filename,unsigned int width,unsigned int height,unsigned int depth);
 
-	// Misc
-	int IsValid();
-	int SameSize(CTexture *pTexture);
-	int BGRtoRGB(void);
-	int HigherPowerOfTwo(int value);
-	int LowerPowerOfTwo(int value);
+    // File saving
+    int SaveFile(char *filename);
+    int SaveFileBMP(char *filename);
+    int SaveFileRAW(char *filename);
 
-	// Updating
-	void UpdateWidthByte32();
-	void UpdateHeader();
-	unsigned int WidthByte32(unsigned int width,unsigned int depth);
+    // Datas (explicit inline functions)
+    unsigned char *GetData(void) { return m_pData; }
+    unsigned int GetWidth(void)  { return m_Width; }
+    unsigned int GetHeight(void) { return m_Height;}
+    unsigned int GetDepth(void)  { return m_Depth; }
+    CString GetFileName(void)    { return m_FileName; }
 
-	// Alpha
-	int HasAlpha() { return (m_Depth == 32); }
-	int AddAlphaLayer(unsigned char alpha);
-	int SetAlphaLayer(unsigned char alpha);
-	int PutAlpha(CTexture *pTexture);	// Put an alpha layer from grey scale
+    // Misc
+    int IsValid();
+    int SameSize(CTexture *pTexture);
+    int BGRtoRGB(void);
+    int HigherPowerOfTwo(int value);
+    int LowerPowerOfTwo(int value);
 
-	// DuplicateMirror
-	int DuplicateMirror(int left=0,int top=0,int right=-1,int bottom=-1);
-	int DuplicateRepeatWidth(int left=0,int top=0,int right=-1,int bottom=-1);
-	int Extract(int left=0,int top=0,int right=-1,int bottom=-1);
+    // Updating
+    void UpdateWidthByte32();
+    void UpdateHeader();
+    unsigned int WidthByte32(unsigned int width,unsigned int depth);
 
-	// Display
-	int Draw(CDC *pDC,int xOffset=0,int yOffset=0, int width=-1, int height=-1);
+    // Alpha
+    int HasAlpha() { return (m_Depth == 32); }
+    int AddAlphaLayer(unsigned char alpha);
+    int SetAlphaLayer(unsigned char alpha);
+    int PutAlpha(CTexture *pTexture);	// Put an alpha layer from grey scale
 
-	// Buffer
-	int ReadBuffer(unsigned char *buffer, int width, int height, int depth);
-	int Grey(unsigned int x,unsigned int y);
+    // DuplicateMirror
+    int DuplicateMirror(int left=0,int top=0,int right=-1,int bottom=-1);
+    int DuplicateRepeatWidth(int left=0,int top=0,int right=-1,int bottom=-1);
+    int Extract(int left=0,int top=0,int right=-1,int bottom=-1);
 
-	// Memory
-	void Free(void);
+    // Display
+    int Draw(CDC *pDC,int xOffset=0,int yOffset=0, int width=-1, int height=-1);
+
+    // Buffer
+    int ReadBuffer(unsigned char *buffer, int width, int height, int depth);
+    int Grey(unsigned int x,unsigned int y);
+
+    // Memory
+    void Free(void);
 
 private :
 
-	// Memory
-	int Alloc(unsigned int width,unsigned int height,unsigned int depth);
+    // Memory
+    int Alloc(unsigned int width,unsigned int height,unsigned int depth);
 
 };
 

@@ -23,86 +23,86 @@ class CGlView;
 // Possible control modes for our target
 enum eTargetControlMode
 {
-	eTARGET_CONTROL_AUTOMATIC = 0,
-	eTARGET_CONTROL_KEYBOARD,
+    eTARGET_CONTROL_AUTOMATIC = 0,
+    eTARGET_CONTROL_KEYBOARD,
 
-	NUM_TARGET_MOVEMENT_MODES,
+    NUM_TARGET_MOVEMENT_MODES,
 };
 
 // Possible states our target can be in
 enum eTargetState
 {
-	eTARGET_STATE_MOVING = 0,
-	eTARGET_STATE_EXPLODING,
-	eTARGET_STATE_FINISHED_EXPLODING,
+    eTARGET_STATE_MOVING = 0,
+    eTARGET_STATE_EXPLODING,
+    eTARGET_STATE_FINISHED_EXPLODING,
 
-	NUM_TARGET_STATES,
+    NUM_TARGET_STATES,
 };
 
 // Possible textures to use to draw our target
 enum eTargetTexture
 {
-	eTARGET_TEXTURE_NORMAL = 0,
-	eTARGET_TEXTURE_EXPLOSION,
+    eTARGET_TEXTURE_NORMAL = 0,
+    eTARGET_TEXTURE_EXPLOSION,
 
-	NUM_TARGET_TEXTURES,
+    NUM_TARGET_TEXTURES,
 };
 
 class CTarget
 {
 public:
-	CTarget();
-	~CTarget()																	{ }
+    CTarget();
+    ~CTarget()																	{ }
 
-	void				Reset();
+    void				Reset();
 
-	void				SetCurrentWorld(CWorld *current_world)					{ m_pCurrentWorld = current_world; }
+    void				SetCurrentWorld(CWorld *current_world)					{ m_pCurrentWorld = current_world; }
 
-	void				SetControlMode(eTargetControlMode new_control_mode)		{ m_ControlMode = new_control_mode; }
+    void				SetControlMode(eTargetControlMode new_control_mode)		{ m_ControlMode = new_control_mode; }
 
-	void				SetPosition(float new_position_x, float new_position_y)	{ m_Position.x = new_position_x; m_Position.y = new_position_y; }
-	void				SetPosition(CVector2 *new_position)						{ m_Position = *new_position; }
-	CVector2*			GetPosition()											{ return &m_Position; }
-						
-	void				SetUserDesiredVelocityX(float new_velocity_x)			{ m_UserDesiredVelocity.x = new_velocity_x; }
-	void				SetUserDesiredVelocityY(float new_velocity_y)			{ m_UserDesiredVelocity.y = new_velocity_y; }
-																				
-	void				Move(float timestep);									
-																				
-	void				SetTexture(const char *filename, int index, int width, int height, int bit_depth);
-	CTexture*			GetTexture(int index)									{ return &m_Texture[index]; }
+    void				SetPosition(float new_position_x, float new_position_y)	{ m_Position.x = new_position_x; m_Position.y = new_position_y; }
+    void				SetPosition(CVector2 *new_position)						{ m_Position = *new_position; }
+    CVector2*			GetPosition()											{ return &m_Position; }
 
-	bool				NeedToBeReset()											{ return (m_CurrentState == eTARGET_STATE_FINISHED_EXPLODING); }
-	eTargetState		GetCurrentState()										{ return m_CurrentState; }
+    void				SetUserDesiredVelocityX(float new_velocity_x)			{ m_UserDesiredVelocity.x = new_velocity_x; }
+    void				SetUserDesiredVelocityY(float new_velocity_y)			{ m_UserDesiredVelocity.y = new_velocity_y; }
 
-	void				Explode();
+    void				Move(float timestep);
 
-	float				GetSize();
-	float				GetMaxAngularVelocity();
-	
-	void				SetMaxSpeed(float max_speed)							{ m_MaxSpeed = max_speed; }
-	float				GetMaxSpeed()											{ return m_MaxSpeed; }
-						
-	int					Draw(CGlView *gl_view);	
-						
+    void				SetTexture(const char *filename, int index, int width, int height, int bit_depth);
+    CTexture*			GetTexture(int index)									{ return &m_Texture[index]; }
+
+    bool				NeedToBeReset()											{ return (m_CurrentState == eTARGET_STATE_FINISHED_EXPLODING); }
+    eTargetState		GetCurrentState()										{ return m_CurrentState; }
+
+    void				Explode();
+
+    float				GetSize();
+    float				GetMaxAngularVelocity();
+
+    void				SetMaxSpeed(float max_speed)							{ m_MaxSpeed = max_speed; }
+    float				GetMaxSpeed()											{ return m_MaxSpeed; }
+
+    int					Draw(CGlView *gl_view);
+
 private:				
-	float				GetNumSecondsToExplode();
+    float				GetNumSecondsToExplode();
 
-	CWorld*				m_pCurrentWorld;				// The world we exist in
-														
-	CVector2			m_UserDesiredVelocity;			// Velocity desired from the user
-														
-	CVector2			m_Direction;					// The current direction we're headed
-	CVector2			m_Position;						// Our current position
-						
-	CTexture			m_Texture[NUM_TARGET_TEXTURES];	// Textures used to draw us
+    CWorld*				m_pCurrentWorld;				// The world we exist in
 
-	float				m_MaxSpeed;						// Our maximum speed in world units/s
-														
-	float				m_ExplosionTimeLeft;			// If m_CurrentState is eTARGET_STATE_EXPLODING, how many seconds are left before we're finished exploding?
-														
-	eTargetControlMode	m_ControlMode;					// Our current control mode -- either keyboard or automatic
-	eTargetState		m_CurrentState;					// Our current state -- either moving, exploding, or finished exploding
+    CVector2			m_UserDesiredVelocity;			// Velocity desired from the user
+
+    CVector2			m_Direction;					// The current direction we're headed
+    CVector2			m_Position;						// Our current position
+
+    CTexture			m_Texture[NUM_TARGET_TEXTURES];	// Textures used to draw us
+
+    float				m_MaxSpeed;						// Our maximum speed in world units/s
+
+    float				m_ExplosionTimeLeft;			// If m_CurrentState is eTARGET_STATE_EXPLODING, how many seconds are left before we're finished exploding?
+
+    eTargetControlMode	m_ControlMode;					// Our current control mode -- either keyboard or automatic
+    eTargetState		m_CurrentState;					// Our current state -- either moving, exploding, or finished exploding
 };
 
 #endif
