@@ -20,101 +20,101 @@
 
 // Initial values for the radio buttons
 
-eMissileControlRadioButtonValue	MissileInitialControlType	= eRADIO_MISSILE_CONTROL_PID;
-eTargetControlRadioButtonValue	TargetInitialControlType	= eRADIO_TARGET_CONTROL_AUTOMATIC;
+eMissileControlRadioButtonValue MissileInitialControlType   = eRADIO_MISSILE_CONTROL_PID;
+eTargetControlRadioButtonValue  TargetInitialControlType    = eRADIO_TARGET_CONTROL_AUTOMATIC;
 
 // Initial values for the sliders
-const float	MissileInitialSteeringPCoefficient		= 2.0f;
-const float	MissileInitialSteeringICoefficient		= 0.5f;
-const float	MissileInitialSteeringDCoefficient		= 2.9f;
+const float MissileInitialSteeringPCoefficient      = 2.0f;
+const float MissileInitialSteeringICoefficient      = 0.5f;
+const float MissileInitialSteeringDCoefficient      = 2.9f;
 
-const float	MissileInitialMaxAcceleration			= 1000.0f;	// World units / second^2
-const float	MissileInitialMaxAngularAcceleration	= 180.0f;	// Degrees / second^2
-const float MissileInitialPIDOutputScale			= 1.0f;
-const float	TargetInitialMaxSpeed					= 1250.0f;	// World units / second
+const float MissileInitialMaxAcceleration           = 1000.0f;  // World units / second^2
+const float MissileInitialMaxAngularAcceleration    = 180.0f;   // Degrees / second^2
+const float MissileInitialPIDOutputScale            = 1.0f;
+const float TargetInitialMaxSpeed                   = 1250.0f;  // World units / second
 
-const float	MissileInitialRotationalDragFactor		= 0.005f;
+const float MissileInitialRotationalDragFactor      = 0.005f;
 
 // Setup parameters for the sliders
-const float	PIDSliderRange							= 30.0f;
-const float	PIDSliderIncrement						= 0.1f;
-const float	PIDSliderLargeChange					= 1.0f;
-const float	PIDSliderTickFrequency					= 5.0f;
+const float PIDSliderRange                          = 30.0f;
+const float PIDSliderIncrement                      = 0.1f;
+const float PIDSliderLargeChange                    = 1.0f;
+const float PIDSliderTickFrequency                  = 5.0f;
 
-const float	MissileAccelerationSliderMinValue		= 0.0f;
-const float	MissileAccelerationSliderMaxValue		= 3000.0f;
-const float	MissileAccelerationSliderIncrement		= 50.0f;
-const float	MissileAccelerationSliderLargeChange	= 500.0f;
-const float	MissileAccelerationSliderTickFrequency	= 500.0f;
+const float MissileAccelerationSliderMinValue       = 0.0f;
+const float MissileAccelerationSliderMaxValue       = 3000.0f;
+const float MissileAccelerationSliderIncrement      = 50.0f;
+const float MissileAccelerationSliderLargeChange    = 500.0f;
+const float MissileAccelerationSliderTickFrequency  = 500.0f;
 
-const float	MissileRotationalDragFactorSliderMinValue		= 0.0f;
-const float	MissileRotationalDragFactorSliderMaxValue		= 0.25f;
-const float	MissileRotationalDragFactorSliderIncrement		= 0.005f;
-const float	MissileRotationalDragFactorSliderLargeChange	= 0.05f;
-const float	MissileRotationalDragFactorSliderTickFrequency	= 0.05f;
+const float MissileRotationalDragFactorSliderMinValue       = 0.0f;
+const float MissileRotationalDragFactorSliderMaxValue       = 0.25f;
+const float MissileRotationalDragFactorSliderIncrement      = 0.005f;
+const float MissileRotationalDragFactorSliderLargeChange    = 0.05f;
+const float MissileRotationalDragFactorSliderTickFrequency  = 0.05f;
 
-const float	MissileAngularAccelerationSliderMinValue		= 0.0f;
-const float	MissileAngularAccelerationSliderMaxValue		= 3600.0f;
-const float	MissileAngularAccelerationSliderIncrement		= 22.5f;
-const float	MissileAngularAccelerationSliderLargeChange		= 90.0f;
-const float	MissileAngularAccelerationSliderTickFrequency	= 90.0f;
+const float MissileAngularAccelerationSliderMinValue        = 0.0f;
+const float MissileAngularAccelerationSliderMaxValue        = 3600.0f;
+const float MissileAngularAccelerationSliderIncrement       = 22.5f;
+const float MissileAngularAccelerationSliderLargeChange     = 90.0f;
+const float MissileAngularAccelerationSliderTickFrequency   = 90.0f;
 
-const float	MissilePIDOutputScaleSliderMinValue				= 0.0f;
-const float	MissilePIDOutputScaleSliderMaxValue				= 10.0f;
-const float	MissilePIDOutputScaleSliderIncrement			= 0.1f;
-const float	MissilePIDOutputScaleSliderLargeChange			= 0.5f;
-const float	MissilePIDOutputScaleSliderTickFrequency		= 0.5f;
+const float MissilePIDOutputScaleSliderMinValue             = 0.0f;
+const float MissilePIDOutputScaleSliderMaxValue             = 10.0f;
+const float MissilePIDOutputScaleSliderIncrement            = 0.1f;
+const float MissilePIDOutputScaleSliderLargeChange          = 0.5f;
+const float MissilePIDOutputScaleSliderTickFrequency        = 0.5f;
 
-const float	TargetSpeedSliderMinValue				= 0.0f;
-const float	TargetSpeedSliderMaxValue				= 3000.0f;
-const float	TargetSpeedSliderIncrement				= 50.0f;
-const float	TargetSpeedSliderLargeChange			= 200.0f;
-const float	TargetSpeedSliderTickFrequency			= 200.0f;
+const float TargetSpeedSliderMinValue               = 0.0f;
+const float TargetSpeedSliderMaxValue               = 3000.0f;
+const float TargetSpeedSliderIncrement              = 50.0f;
+const float TargetSpeedSliderLargeChange            = 200.0f;
+const float TargetSpeedSliderTickFrequency          = 200.0f;
 
 // Timing
-const UINT	WorldUpdateFrequencyMilliseconds		= 30;
-const UINT	WorldTimerIDNumber						= 1;
+const UINT  WorldUpdateFrequencyMilliseconds        = 30;
+const UINT  WorldTimerIDNumber                      = 1;
 
-const float	WorldMaxTimestep						= 0.25f; // Maximum timestep in seconds
+const float WorldMaxTimestep                        = 0.25f; // Maximum timestep in seconds
 
 // Adaptive controller tuning values
 
-const eAdaptationRule	MissileSteeringAdaptationRule			= eADAPT_MIT_RULE;
-const float 			MissileSteeringTimeslice				= 0.33f;
-const float 			MissileSteeringPTermUpdateThreshold		= 1.0f;
-const float 			MissileSteeringITermUpdateThreshold		= 1.0f;
-const float 			MissileSteeringDTermUpdateThreshold		= 1.0f;
-const float 			MissileSteeringPTermAdaptationGain		= 0.0005f;
-const float 			MissileSteeringITermAdaptationGain		= 0.0005f;
-const float 			MissileSteeringDTermAdaptationGain		= 0.0001f;
-const float 			MissileSteeringPTermAlpha				= 0.0f;
-const float 			MissileSteeringITermAlpha				= 0.0f;
-const float 			MissileSteeringDTermAlpha				= 0.0f;
+const eAdaptationRule   MissileSteeringAdaptationRule           = eADAPT_MIT_RULE;
+const float             MissileSteeringTimeslice                = 0.33f;
+const float             MissileSteeringPTermUpdateThreshold     = 1.0f;
+const float             MissileSteeringITermUpdateThreshold     = 1.0f;
+const float             MissileSteeringDTermUpdateThreshold     = 1.0f;
+const float             MissileSteeringPTermAdaptationGain      = 0.0005f;
+const float             MissileSteeringITermAdaptationGain      = 0.0005f;
+const float             MissileSteeringDTermAdaptationGain      = 0.0001f;
+const float             MissileSteeringPTermAlpha               = 0.0f;
+const float             MissileSteeringITermAlpha               = 0.0f;
+const float             MissileSteeringDTermAlpha               = 0.0f;
 
-const float				MissileSteeringMaxPCoefficient			= 30.0f;
-const float				MissileSteeringMinPCoefficient			= 1.0f;
-const float				MissileSteeringMaxICoefficient			= 7.0f;
-const float				MissileSteeringMinICoefficient			= 0.0f;
-const float				MissileSteeringMaxDCoefficient			= 6.0f;
-const float				MissileSteeringMinDCoefficient			= 0.0f;
+const float             MissileSteeringMaxPCoefficient          = 30.0f;
+const float             MissileSteeringMinPCoefficient          = 1.0f;
+const float             MissileSteeringMaxICoefficient          = 7.0f;
+const float             MissileSteeringMinICoefficient          = 0.0f;
+const float             MissileSteeringMaxDCoefficient          = 6.0f;
+const float             MissileSteeringMinDCoefficient          = 0.0f;
 
 void CSliderCtrlWithCEdit::Init(CEdit *edit, float min_value, float max_value, 
                                 float increment, float large_change, float tick_frequency,
                                 int number_format)
 { 
-    m_pCEdit		= edit;
-    m_MinValue		= min_value;
-    m_MaxValue		= max_value;
-    m_Increment		= increment;
-    m_LargeChange	= large_change;
-    m_TickFrequency	= tick_frequency;
-    m_NumberFormat	= number_format;
+    m_pCEdit        = edit;
+    m_MinValue      = min_value;
+    m_MaxValue      = max_value;
+    m_Increment     = increment;
+    m_LargeChange   = large_change;
+    m_TickFrequency = tick_frequency;
+    m_NumberFormat  = number_format;
 
-    int min_integer				= (int)((m_MinValue			/ m_Increment) + 0.5f);
-    int max_integer				= (int)((m_MaxValue			/ m_Increment) + 0.5f);
-    int increment_integer		= (int)((1.0f				/ m_Increment) + 0.5f);
-    int large_change_integer	= (int)((m_LargeChange		/ m_Increment) + 0.5f);
-    int tick_frequency_integer	= (int)((m_TickFrequency	/ m_Increment) + 0.5f);
+    int min_integer             = (int)((m_MinValue         / m_Increment) + 0.5f);
+    int max_integer             = (int)((m_MaxValue         / m_Increment) + 0.5f);
+    int increment_integer       = (int)((1.0f               / m_Increment) + 0.5f);
+    int large_change_integer    = (int)((m_LargeChange      / m_Increment) + 0.5f);
+    int tick_frequency_integer  = (int)((m_TickFrequency    / m_Increment) + 0.5f);
 
     SetRange(min_integer, max_integer);
     SetLineSize(increment_integer);
@@ -255,8 +255,8 @@ BOOL CMainDlg::OnInitDialog()
 
     // Set the icon for this dialog.  The framework does this automatically
     //  when the application's main window is not a dialog
-    SetIcon(m_hIcon, TRUE);			// Set big icon
-    SetIcon(m_hIcon, FALSE);		// Set small icon
+    SetIcon(m_hIcon, TRUE);         // Set big icon
+    SetIcon(m_hIcon, FALSE);        // Set small icon
 
     // Seed random number generator
 
@@ -288,16 +288,16 @@ BOOL CMainDlg::OnInitDialog()
 
     // Init our sliders
 
-    m_SliderMissileSteeringP.Init(&m_TextBoxMissileSteeringPControl,				-PIDSliderRange,							PIDSliderRange,								PIDSliderIncrement,							PIDSliderLargeChange,							PIDSliderTickFrequency,							IDS_PID_TEXTBOX_NUMBER_FORMAT);
-    m_SliderMissileSteeringI.Init(&m_TextBoxMissileSteeringIControl,				-PIDSliderRange,							PIDSliderRange,								PIDSliderIncrement,							PIDSliderLargeChange,							PIDSliderTickFrequency,							IDS_PID_TEXTBOX_NUMBER_FORMAT);
-    m_SliderMissileSteeringD.Init(&m_TextBoxMissileSteeringDControl,				-PIDSliderRange,							PIDSliderRange,								PIDSliderIncrement,							PIDSliderLargeChange,							PIDSliderTickFrequency,							IDS_PID_TEXTBOX_NUMBER_FORMAT);
+    m_SliderMissileSteeringP.Init(&m_TextBoxMissileSteeringPControl,                -PIDSliderRange,                            PIDSliderRange,                             PIDSliderIncrement,                         PIDSliderLargeChange,                           PIDSliderTickFrequency,                         IDS_PID_TEXTBOX_NUMBER_FORMAT);
+    m_SliderMissileSteeringI.Init(&m_TextBoxMissileSteeringIControl,                -PIDSliderRange,                            PIDSliderRange,                             PIDSliderIncrement,                         PIDSliderLargeChange,                           PIDSliderTickFrequency,                         IDS_PID_TEXTBOX_NUMBER_FORMAT);
+    m_SliderMissileSteeringD.Init(&m_TextBoxMissileSteeringDControl,                -PIDSliderRange,                            PIDSliderRange,                             PIDSliderIncrement,                         PIDSliderLargeChange,                           PIDSliderTickFrequency,                         IDS_PID_TEXTBOX_NUMBER_FORMAT);
 
-    m_SliderMissileAcceleration.Init(&m_TextBoxMissileAccelerationControl,			MissileAccelerationSliderMinValue,			MissileAccelerationSliderMaxValue,			MissileAccelerationSliderIncrement,			MissileAccelerationSliderLargeChange,			MissileAccelerationSliderTickFrequency,			IDS_ACCELERATION_SPEED_TEXTBOX_NUMBER_FORMAT);
-    m_SliderMissileRotationalDrag.Init(&m_TextBoxMissileRotationalDrag,				MissileRotationalDragFactorSliderMinValue,	MissileRotationalDragFactorSliderMaxValue,	MissileRotationalDragFactorSliderIncrement,	MissileRotationalDragFactorSliderLargeChange,	MissileRotationalDragFactorSliderTickFrequency,	IDS_ROTATIONAL_DRAG_NUMBER_FORMAT);
-    m_SliderMissileAngularAcceleration.Init(&m_TextBoxMissileAngularAcceleration,	MissileAngularAccelerationSliderMinValue,	MissileAngularAccelerationSliderMaxValue,	MissileAngularAccelerationSliderIncrement,	MissileAngularAccelerationSliderLargeChange,	MissileAngularAccelerationSliderTickFrequency,	IDS_ACCELERATION_SPEED_TEXTBOX_NUMBER_FORMAT);
-    m_SliderMissilePIDOutputScale.Init(&m_TextBoxMissilePIDOutputScale,				MissilePIDOutputScaleSliderMinValue,		MissilePIDOutputScaleSliderMaxValue,		MissilePIDOutputScaleSliderIncrement,		MissilePIDOutputScaleSliderLargeChange,			MissilePIDOutputScaleSliderTickFrequency,		IDS_ROTATIONAL_DRAG_NUMBER_FORMAT);
+    m_SliderMissileAcceleration.Init(&m_TextBoxMissileAccelerationControl,          MissileAccelerationSliderMinValue,          MissileAccelerationSliderMaxValue,          MissileAccelerationSliderIncrement,         MissileAccelerationSliderLargeChange,           MissileAccelerationSliderTickFrequency,         IDS_ACCELERATION_SPEED_TEXTBOX_NUMBER_FORMAT);
+    m_SliderMissileRotationalDrag.Init(&m_TextBoxMissileRotationalDrag,             MissileRotationalDragFactorSliderMinValue,  MissileRotationalDragFactorSliderMaxValue,  MissileRotationalDragFactorSliderIncrement, MissileRotationalDragFactorSliderLargeChange,   MissileRotationalDragFactorSliderTickFrequency, IDS_ROTATIONAL_DRAG_NUMBER_FORMAT);
+    m_SliderMissileAngularAcceleration.Init(&m_TextBoxMissileAngularAcceleration,   MissileAngularAccelerationSliderMinValue,   MissileAngularAccelerationSliderMaxValue,   MissileAngularAccelerationSliderIncrement,  MissileAngularAccelerationSliderLargeChange,    MissileAngularAccelerationSliderTickFrequency,  IDS_ACCELERATION_SPEED_TEXTBOX_NUMBER_FORMAT);
+    m_SliderMissilePIDOutputScale.Init(&m_TextBoxMissilePIDOutputScale,             MissilePIDOutputScaleSliderMinValue,        MissilePIDOutputScaleSliderMaxValue,        MissilePIDOutputScaleSliderIncrement,       MissilePIDOutputScaleSliderLargeChange,         MissilePIDOutputScaleSliderTickFrequency,       IDS_ROTATIONAL_DRAG_NUMBER_FORMAT);
 
-    m_SliderTargetSpeed.Init(&m_TextBoxTargetSpeedControl,							TargetSpeedSliderMinValue,					TargetSpeedSliderMaxValue,					TargetSpeedSliderIncrement,					TargetSpeedSliderLargeChange,					TargetSpeedSliderTickFrequency,					IDS_ACCELERATION_SPEED_TEXTBOX_NUMBER_FORMAT);
+    m_SliderTargetSpeed.Init(&m_TextBoxTargetSpeedControl,                          TargetSpeedSliderMinValue,                  TargetSpeedSliderMaxValue,                  TargetSpeedSliderIncrement,                 TargetSpeedSliderLargeChange,                   TargetSpeedSliderTickFrequency,                 IDS_ACCELERATION_SPEED_TEXTBOX_NUMBER_FORMAT);
 
     // Set the sliders to their initial values
     OnBnClickedButtonResetSliders();
@@ -456,10 +456,10 @@ void CMainDlg::ResizeGLScene()
 }
 
 // Taken from http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winui/WinUI/WindowsUserInterface/UserInput/VirtualKeyCodes.asp
-#define VK_A	0x41
-#define VK_D	0x44
-#define VK_W	0x57
-#define VK_S	0x53
+#define VK_A    0x41
+#define VK_D    0x44
+#define VK_W    0x57
+#define VK_S    0x53
 
 void CMainDlg::ReadKeyboardState()
 {
@@ -468,14 +468,14 @@ void CMainDlg::ReadKeyboardState()
 
     if (GetFocus())
     {
-        m_KeyState[eKEY_MISSILE_THRUST]		= (GetAsyncKeyState(VK_NUMPAD8)	!= 0);
-        m_KeyState[eKEY_MISSILE_TURN_LEFT]	= (GetAsyncKeyState(VK_NUMPAD4)	!= 0);
-        m_KeyState[eKEY_MISSILE_TURN_RIGHT]	= (GetAsyncKeyState(VK_NUMPAD6)	!= 0);
+        m_KeyState[eKEY_MISSILE_THRUST]     = (GetAsyncKeyState(VK_NUMPAD8) != 0);
+        m_KeyState[eKEY_MISSILE_TURN_LEFT]  = (GetAsyncKeyState(VK_NUMPAD4) != 0);
+        m_KeyState[eKEY_MISSILE_TURN_RIGHT] = (GetAsyncKeyState(VK_NUMPAD6) != 0);
 
-        m_KeyState[eKEY_TARGET_MOVE_LEFT]	= (GetAsyncKeyState(VK_A)		!= 0);
-        m_KeyState[eKEY_TARGET_MOVE_RIGHT]	= (GetAsyncKeyState(VK_D)		!= 0);
-        m_KeyState[eKEY_TARGET_MOVE_UP]		= (GetAsyncKeyState(VK_W)		!= 0);
-        m_KeyState[eKEY_TARGET_MOVE_DOWN]	= (GetAsyncKeyState(VK_S)		!= 0);
+        m_KeyState[eKEY_TARGET_MOVE_LEFT]   = (GetAsyncKeyState(VK_A)       != 0);
+        m_KeyState[eKEY_TARGET_MOVE_RIGHT]  = (GetAsyncKeyState(VK_D)       != 0);
+        m_KeyState[eKEY_TARGET_MOVE_UP]     = (GetAsyncKeyState(VK_W)       != 0);
+        m_KeyState[eKEY_TARGET_MOVE_DOWN]   = (GetAsyncKeyState(VK_S)       != 0);
     }
     else
     {
@@ -596,10 +596,10 @@ void CMainDlg::HandleUIControls()
     // Set the missile's physics properties
     //
 
-    float missile_acceleration				= m_SliderMissileAcceleration.GetValue();
-    float missile_angular_acceleration		= m_SliderMissileAngularAcceleration.GetValue();
-    float missile_rotational_drag_factor	= m_SliderMissileRotationalDrag.GetValue();
-    float missile_pid_output_scale			= m_SliderMissilePIDOutputScale.GetValue();
+    float missile_acceleration              = m_SliderMissileAcceleration.GetValue();
+    float missile_angular_acceleration      = m_SliderMissileAngularAcceleration.GetValue();
+    float missile_rotational_drag_factor    = m_SliderMissileRotationalDrag.GetValue();
+    float missile_pid_output_scale          = m_SliderMissilePIDOutputScale.GetValue();
 
     m_World.GetMissile()->SetMaxAcceleration(missile_acceleration);
     m_World.GetMissile()->SetMaxAngularAcceleration(missile_angular_acceleration);
@@ -651,8 +651,8 @@ void CMainDlg::OnTimer(UINT nIDEvent)
 
     if (!m_PauseWorld)
     {
-        float timestep	= (float)(current_time - m_PreviousTime) / 1000.0f;
-        timestep		= min(timestep, WorldMaxTimestep);
+        float timestep  = (float)(current_time - m_PreviousTime) / 1000.0f;
+        timestep        = min(timestep, WorldMaxTimestep);
 
         m_World.DoTimestep(timestep);
     }

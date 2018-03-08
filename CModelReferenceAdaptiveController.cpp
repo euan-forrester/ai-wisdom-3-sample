@@ -15,21 +15,21 @@
 
 void CModelReferenceAdaptiveController::Reset()
 {
-    m_AdaptationRule						= eADAPT_MIT_RULE;
-    m_Timeslice								= 0.0f;
-    m_TotalTimeElapsed						= 0.0f;
-    m_PreviousModelError					= 0.0f;
-    m_AdaptationEnabled						= true;
+    m_AdaptationRule                        = eADAPT_MIT_RULE;
+    m_Timeslice                             = 0.0f;
+    m_TotalTimeElapsed                      = 0.0f;
+    m_PreviousModelError                    = 0.0f;
+    m_AdaptationEnabled                     = true;
 
     for (int i = 0; i < NUM_PID_COEFFICIENTS; i++)
     {
-        m_Coefficient[i]					= 0.0f;
-        m_AdaptationGain[i]					= 0.0f;
-        m_UpdateThreshold[i]				= 0.0f;
-        m_Alpha[i]							= 0.0f;
-        m_MinCoefficient[i]					= 0.0f;
-        m_MaxCoefficient[i]					= 0.0f;
-        m_PreviousCoefficientDerivative[i]	= 0.0f;
+        m_Coefficient[i]                    = 0.0f;
+        m_AdaptationGain[i]                 = 0.0f;
+        m_UpdateThreshold[i]                = 0.0f;
+        m_Alpha[i]                          = 0.0f;
+        m_MinCoefficient[i]                 = 0.0f;
+        m_MaxCoefficient[i]                 = 0.0f;
+        m_PreviousCoefficientDerivative[i]  = 0.0f;
     }
 
     m_PidController.Clear();
@@ -44,10 +44,10 @@ void CModelReferenceAdaptiveController::Update(float timestep, float process_err
 
     // Update each coefficient using a round-robin system
 
-    ePIDCoefficient	current_term			= (ePIDCoefficient)((int)(m_TotalTimeElapsed / m_Timeslice) % NUM_PID_COEFFICIENTS);
-    float			current_term_value		= GetTermValue(current_term);
-    float			model_error				= actual_behavior_value - model_behavior_value;
-    float			coefficient_derivative	= 0.0f;
+    ePIDCoefficient current_term            = (ePIDCoefficient)((int)(m_TotalTimeElapsed / m_Timeslice) % NUM_PID_COEFFICIENTS);
+    float           current_term_value      = GetTermValue(current_term);
+    float           model_error             = actual_behavior_value - model_behavior_value;
+    float           coefficient_derivative  = 0.0f;
 
     //TRACE("Heading error: %f. Actual: %f. Model: %f Model error: %f\n", process_error, actual_behavior_value, model_behavior_value, model_error);
 
@@ -86,7 +86,7 @@ void CModelReferenceAdaptiveController::Update(float timestep, float process_err
     m_PreviousModelError = model_error;
 }
 
-void CModelReferenceAdaptiveController::SetCoefficients(float p_coefficient, float i_coefficient, float d_coefficient)	
+void CModelReferenceAdaptiveController::SetCoefficients(float p_coefficient, float i_coefficient, float d_coefficient)  
 { 
     m_Coefficient[eP_COEFFICIENT] = p_coefficient;
     m_Coefficient[eI_COEFFICIENT] = i_coefficient;
@@ -135,8 +135,8 @@ float CModelReferenceAdaptiveController::GetTermValue(ePIDCoefficient coefficien
 float CModelReferenceAdaptiveController::GetCoefficientDerivative(ePIDCoefficient current_term, 
                                                                   float model_error, float timestep)
 {
-    float adaptation_gain			= m_AdaptationGain[current_term];
-    float sensitivity_derivative	= GetSensitivityDerivative(current_term, model_error, timestep);
+    float adaptation_gain           = m_AdaptationGain[current_term];
+    float sensitivity_derivative    = GetSensitivityDerivative(current_term, model_error, timestep);
 
     switch (m_AdaptationRule)
     {

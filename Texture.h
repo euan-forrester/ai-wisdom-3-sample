@@ -71,7 +71,7 @@ public :
     int HasAlpha() { return (m_Depth == 32); }
     int AddAlphaLayer(unsigned char alpha);
     int SetAlphaLayer(unsigned char alpha);
-    int PutAlpha(CTexture *pTexture);	// Put an alpha layer from grey scale
+    int PutAlpha(CTexture *pTexture);   // Put an alpha layer from grey scale
 
     // DuplicateMirror
     int DuplicateMirror(int left=0,int top=0,int right=-1,int bottom=-1);

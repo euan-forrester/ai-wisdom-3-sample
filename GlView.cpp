@@ -33,8 +33,8 @@ CGlView::~CGlView()
 
 BEGIN_MESSAGE_MAP(CGlView, CWnd)
     //{{AFX_MSG_MAP(CGlView)
-//	ON_WM_DESTROY()
-//	ON_WM_ERASEBKGND()
+//  ON_WM_DESTROY()
+//  ON_WM_ERASEBKGND()
     //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -66,7 +66,7 @@ void CGlView::OnDestroy()
 
     // TODO: Add your message handler code here
     wglMakeCurrent(NULL,NULL);
-    wglDeleteContext(m_hglRC);	
+    wglDeleteContext(m_hglRC);  
 
 }
 
@@ -74,8 +74,8 @@ void CGlView::OnDestroy()
 BOOL CGlView::OnEraseBkgnd(CDC* pDC) 
 {
     // TODO: Add your message handler code here and/or call default
-    return TRUE;	
-//	return CWnd::OnEraseBkgnd(pDC);
+    return TRUE;    
+//  return CWnd::OnEraseBkgnd(pDC);
 }
 */
 
@@ -130,17 +130,17 @@ const float NearClipPlane = -10.0f;
 const float FarClipPlane = 10.0f;
 
 
-GLvoid CGlView::ReSizeGLScene(GLsizei width, GLsizei height, CWorld *world)	// Resize And Initialize The GL Window
+GLvoid CGlView::ReSizeGLScene(GLsizei width, GLsizei height, CWorld *world) // Resize And Initialize The GL Window
 {
-    if (height == 0)									// Prevent A Divide By Zero By
+    if (height == 0)                                    // Prevent A Divide By Zero By
     {
-        height = 1;										// Making Height Equal One
+        height = 1;                                     // Making Height Equal One
     }
 
-    glViewport(0, 0, width, height);	// Reset The Current Viewport
+    glViewport(0, 0, width, height);    // Reset The Current Viewport
 
-    glMatrixMode(GL_PROJECTION);		// Select The Projection Matrix
-    glLoadIdentity();					// Reset The Projection Matrix
+    glMatrixMode(GL_PROJECTION);        // Select The Projection Matrix
+    glLoadIdentity();                   // Reset The Projection Matrix
 
     CVector2 *world_center = world->GetCenter();
 
@@ -148,26 +148,26 @@ GLvoid CGlView::ReSizeGLScene(GLsizei width, GLsizei height, CWorld *world)	// R
             world_center->y - (world->GetSize() / 2.0f), world_center->y + (world->GetSize() / 2.0f),
             NearClipPlane, FarClipPlane);
 
-    glMatrixMode(GL_MODELVIEW);							// Select The Modelview Matrix
-    glLoadIdentity();									// Reset The Modelview Matrix
+    glMatrixMode(GL_MODELVIEW);                         // Select The Modelview Matrix
+    glLoadIdentity();                                   // Reset The Modelview Matrix
 }
 
 
-int CGlView::InitGL(GLvoid)								// All Setup For OpenGL Goes Here
+int CGlView::InitGL(GLvoid)                             // All Setup For OpenGL Goes Here
 {
-    glShadeModel(GL_SMOOTH);							// Enable Smooth Shading
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);				// White Background
-    glDisable(GL_DEPTH_TEST);							// Disables Depth Testing
+    glShadeModel(GL_SMOOTH);                            // Enable Smooth Shading
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);               // White Background
+    glDisable(GL_DEPTH_TEST);                           // Disables Depth Testing
 
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 
-    return TRUE;										// Initialization Went OK
+    return TRUE;                                        // Initialization Went OK
 }
 
 int CGlView::BeginDrawGLScene(GLvoid)
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear Screen And Depth Buffer
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear Screen And Depth Buffer
 
     return TRUE;
 }

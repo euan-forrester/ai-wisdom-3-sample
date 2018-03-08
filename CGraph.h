@@ -20,13 +20,13 @@ public:
     CGraph(int num_control_points, float min_x_value, float max_x_value);
     ~CGraph();
 
-    void	SetControlPoint(int index, float y_value)		{ ASSERT((index >= 0) && (index < m_NumControlPoints)); m_pControlPoint[index] = y_value; }
-    float	GetValue(float x_value);
+    void    SetControlPoint(int index, float y_value)       { ASSERT((index >= 0) && (index < m_NumControlPoints)); m_pControlPoint[index] = y_value; }
+    float   GetValue(float x_value);
 
 private:
-    float	m_MinXValue;
-    float	m_MaxXValue;
+    float   m_MinXValue;
+    float   m_MaxXValue;
 
-    int		m_NumControlPoints;
-    float*	m_pControlPoint;
+    int     m_NumControlPoints;
+    float*  m_pControlPoint;
 };

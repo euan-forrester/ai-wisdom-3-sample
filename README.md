@@ -20,7 +20,7 @@ This sample requires Windows XP to run, and MS VC.Net 2003 to compile
 
 - You can also choose to steer the missile using the keyboard, use 8 key on the numpad to accelerate, and use 4 and 6 to steer left and right. Hopefully, you will discover that the missile is actually quite difficult to control.
 
-- Now put the missile into adaptive control mode and watch the P, I, and D move	themselves in an effort to make the missile track the target well again. If you've made a small change to the missile's handling, the sliders should re-tune themselves fairly quickly. If you've made a larger change, it may take longer, or may never even reach equilibrium.
+- Now put the missile into adaptive control mode and watch the P, I, and D move themselves in an effort to make the missile track the target well again. If you've made a small change to the missile's handling, the sliders should re-tune themselves fairly quickly. If you've made a larger change, it may take longer, or may never even reach equilibrium.
 
 - Click on the Reset button to reset all of the sliders to their default values.
 

@@ -24,25 +24,25 @@ public:
 // Attributes
 public:
 
-    HDC		m_hDC;		// GDI Device Context
-    HGLRC	m_hglRC;		// Rendering Context
+    HDC     m_hDC;      // GDI Device Context
+    HGLRC   m_hglRC;        // Rendering Context
 
-    CWnd*	m_pclWnd;
-    HWND	m_hWnd;
+    CWnd*   m_pclWnd;
+    HWND    m_hWnd;
  
 // Operations
 public:
-    BOOL	SetPixelformat(HDC hdc);
-    GLvoid	ReSizeGLScene(GLsizei width, GLsizei height, CWorld *world);
-    int		InitGL(GLvoid);
-    int		BeginDrawGLScene(GLvoid);
-    int		EndDrawGLScene(GLvoid);
+    BOOL    SetPixelformat(HDC hdc);
+    GLvoid  ReSizeGLScene(GLsizei width, GLsizei height, CWorld *world);
+    int     InitGL(GLvoid);
+    int     BeginDrawGLScene(GLvoid);
+    int     EndDrawGLScene(GLvoid);
 
 // Overrides
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(CGlView)
     protected:
-//	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+//  virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
     //}}AFX_VIRTUAL
 
 // Implementation
@@ -53,13 +53,13 @@ public:
 protected:
 
 public:
-    int	OnCreate();
+    int OnCreate();
 
     //{{AFX_MSG(CGlView)
-//	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-//	afx_msg void OnDestroy();
-//	afx_msg void OnSize(UINT nType, int cx, int cy);
-//	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+//  afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+//  afx_msg void OnDestroy();
+//  afx_msg void OnSize(UINT nType, int cx, int cy);
+//  afx_msg BOOL OnEraseBkgnd(CDC* pDC);
     //}}AFX_MSG
     DECLARE_MESSAGE_MAP()
 };

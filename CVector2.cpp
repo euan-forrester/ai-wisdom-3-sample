@@ -8,8 +8,8 @@
 
 #define PI 3.14159265f
 
-#define RAD2DEG(x) ((x) * 180.0f / PI)	// Convert radians to degrees
-#define DEG2RAD(x) ((x) * PI / 180.0f)	// Convert degrees to radians
+#define RAD2DEG(x) ((x) * 180.0f / PI)  // Convert radians to degrees
+#define DEG2RAD(x) ((x) * PI / 180.0f)  // Convert degrees to radians
 
 CVector2::CVector2(float initial_x, float initial_y) : x(initial_x), y(initial_y)
 {
@@ -82,16 +82,16 @@ float CVector2::GetAngle()
 
 void CVector2::Rotate(float angle_in_degrees)
 {
-    float angle_in_radians	= DEG2RAD(angle_in_degrees);
+    float angle_in_radians  = DEG2RAD(angle_in_degrees);
 
-    float cosine			= (float)cos(angle_in_radians);
-    float sine				= (float)sin(angle_in_radians);
+    float cosine            = (float)cos(angle_in_radians);
+    float sine              = (float)sin(angle_in_radians);
 
-    float new_x				= (x * cosine)	- (y * sine);
-    float new_y				= (x * sine)	+ (y * cosine);
+    float new_x             = (x * cosine)  - (y * sine);
+    float new_y             = (x * sine)    + (y * cosine);
 
-    x						= new_x;
-    y						= new_y;
+    x                       = new_x;
+    y                       = new_y;
 }
 
 //

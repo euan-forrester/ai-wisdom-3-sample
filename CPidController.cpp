@@ -15,16 +15,16 @@
 
 void CPidController::Clear()
 {
-    m_CurrentIndex		= -1;
-    m_PreviousIndex		= -1;
-    m_NumErrorsRecorded	= 0;
+    m_CurrentIndex      = -1;
+    m_PreviousIndex     = -1;
+    m_NumErrorsRecorded = 0;
 
-    m_CurrentIntegral	= 0.0f;
+    m_CurrentIntegral   = 0.0f;
 
     for (int i = 0; i < NUM_ERROR_SLOTS; i++)
     {
-        m_Error[i]		= 0.0f;
-        m_Timestep[i]	= 0.0f;
+        m_Error[i]      = 0.0f;
+        m_Timestep[i]   = 0.0f;
     }
 }
 
@@ -48,20 +48,20 @@ void CPidController::Clear()
 
 void CPidController::Record(float error, float timestep)
 {
-    m_PreviousIndex				= m_CurrentIndex;
-    m_CurrentIndex				= (m_CurrentIndex + 1) % NUM_ERROR_SLOTS;
+    m_PreviousIndex             = m_CurrentIndex;
+    m_CurrentIndex              = (m_CurrentIndex + 1) % NUM_ERROR_SLOTS;
 
     if (m_NumErrorsRecorded == NUM_ERROR_SLOTS)
     {
-        m_CurrentIntegral		-= m_Error[m_CurrentIndex] * m_Timestep[m_CurrentIndex];
+        m_CurrentIntegral       -= m_Error[m_CurrentIndex] * m_Timestep[m_CurrentIndex];
     }
 
-    m_Error[m_CurrentIndex]		= error;
-    m_Timestep[m_CurrentIndex]	= timestep;
+    m_Error[m_CurrentIndex]     = error;
+    m_Timestep[m_CurrentIndex]  = timestep;
 
-    m_CurrentIntegral			+= error * timestep;
+    m_CurrentIntegral           += error * timestep;
 
-    m_NumErrorsRecorded			= min(m_NumErrorsRecorded + 1, NUM_ERROR_SLOTS);
+    m_NumErrorsRecorded         = min(m_NumErrorsRecorded + 1, NUM_ERROR_SLOTS);
 }
 
 //
@@ -110,11 +110,11 @@ float CPidController::GetErrorDerivative()
 {
     if (m_NumErrorsRecorded >= 2)
     {
-        ASSERT((m_CurrentIndex	>= 0)	&& (m_CurrentIndex	< NUM_ERROR_SLOTS));
-        ASSERT((m_PreviousIndex	>= 0)	&& (m_PreviousIndex	< NUM_ERROR_SLOTS));
+        ASSERT((m_CurrentIndex  >= 0)   && (m_CurrentIndex  < NUM_ERROR_SLOTS));
+        ASSERT((m_PreviousIndex >= 0)   && (m_PreviousIndex < NUM_ERROR_SLOTS));
 
-        float difference	= m_Error[m_CurrentIndex] - m_Error[m_PreviousIndex];
-        float time_interval	= m_Timestep[m_CurrentIndex];
+        float difference    = m_Error[m_CurrentIndex] - m_Error[m_PreviousIndex];
+        float time_interval = m_Timestep[m_CurrentIndex];
 
         if (time_interval > 0.001f)
         {
@@ -137,8 +137,8 @@ float CPidController::GetErrorDerivative()
 
 float CPidController::GetOutput()
 {
-    return	m_P_Coefficient * GetError()			+
-            m_I_Coefficient * GetErrorIntegral()	+
+    return  m_P_Coefficient * GetError()            +
+            m_I_Coefficient * GetErrorIntegral()    +
             m_D_Coefficient * GetErrorDerivative();
 }
 
@@ -178,9 +178,9 @@ void CPidController::DumpState()
     }
 
     TRACE(">>>\n");
-    TRACE(">>> Current P term: Coefficient %f * Error      %f = %f\n", m_P_Coefficient, GetError(),				m_P_Coefficient * GetError());
-    TRACE(">>> Current I term: Coefficient %f * Integral   %f = %f\n", m_I_Coefficient, GetErrorIntegral(),		m_I_Coefficient * GetErrorIntegral());
-    TRACE(">>> Current D term: Coefficient %f * Derivative %f = %f\n", m_D_Coefficient, GetErrorDerivative(),	m_D_Coefficient * GetErrorDerivative());
+    TRACE(">>> Current P term: Coefficient %f * Error      %f = %f\n", m_P_Coefficient, GetError(),             m_P_Coefficient * GetError());
+    TRACE(">>> Current I term: Coefficient %f * Integral   %f = %f\n", m_I_Coefficient, GetErrorIntegral(),     m_I_Coefficient * GetErrorIntegral());
+    TRACE(">>> Current D term: Coefficient %f * Derivative %f = %f\n", m_D_Coefficient, GetErrorDerivative(),   m_D_Coefficient * GetErrorDerivative());
     TRACE(">>>\n");
     TRACE(">>> Final output: %f\n", GetOutput());
     TRACE(">>> Integral: %f. Calculated directly: %f\n", GetErrorIntegral(), CalculateIntegralDirectly());

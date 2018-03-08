@@ -33,27 +33,27 @@ public:
     CWorld();
     ~CWorld();
 
-    void				BeginTimestep();
-    void				DoTimestep(float timestep);
-    void				EndTimestep();
+    void                BeginTimestep();
+    void                DoTimestep(float timestep);
+    void                EndTimestep();
 
-    void				HandleKeyboardState(eKey key, bool state);
+    void                HandleKeyboardState(eKey key, bool state);
 
-    float				GetSize();
-    CVector2*			GetCenter();
+    float               GetSize();
+    CVector2*           GetCenter();
 
-    CMissile*			GetMissile()								{ return &m_Missile; }
-    CTarget*			GetTarget()									{ return &m_Target; }
+    CMissile*           GetMissile()                                { return &m_Missile; }
+    CTarget*            GetTarget()                                 { return &m_Target; }
 
-    int					Draw(CGlView *gl_view);
+    int                 Draw(CGlView *gl_view);
 
 private:
-    void				ResetMissileAndTarget();
+    void                ResetMissileAndTarget();
 
-    CVector2			m_Center;					// Location of the center of our world
+    CVector2            m_Center;                   // Location of the center of our world
 
-    CMissile			m_Missile;					// Our missile
-    CTarget				m_Target;					// The target the missile is steering towards
+    CMissile            m_Missile;                  // Our missile
+    CTarget             m_Target;                   // The target the missile is steering towards
 };
 
 #endif

@@ -19,12 +19,12 @@
 // Tuning constants
 //
 
-const float TargetSize							= 100.0f;		// Size in world units
-const float TargetMaxAngularVelocity			= 90.0f;		// Max angular velocity in degrees / second
-const float TargetSteerToCenterOfWorldFactor	= 0.00000008f;	// Amount to steer towards the center of the world
+const float TargetSize                          = 100.0f;       // Size in world units
+const float TargetMaxAngularVelocity            = 90.0f;        // Max angular velocity in degrees / second
+const float TargetSteerToCenterOfWorldFactor    = 0.00000008f;  // Amount to steer towards the center of the world
 
-const float TargetNumSecondsToExplode			= 1.0f;			// Num seconds it takes our target to explode once it's been hit
-const float TargetExplosionSizeFactor			= 15.0f;		// By how many times does each dimension of the target's size increase as it's exploding
+const float TargetNumSecondsToExplode           = 1.0f;         // Num seconds it takes our target to explode once it's been hit
+const float TargetExplosionSizeFactor           = 15.0f;        // By how many times does each dimension of the target's size increase as it's exploding
 
 //
 // Our constructor: set some default values for our state variables
@@ -32,23 +32,23 @@ const float TargetExplosionSizeFactor			= 15.0f;		// By how many times does each
 
 CTarget::CTarget()
 {
-    m_ControlMode			= eTARGET_CONTROL_AUTOMATIC;
+    m_ControlMode           = eTARGET_CONTROL_AUTOMATIC;
 
     Reset();
 }
 
 void CTarget::Reset()
 {
-    m_CurrentState			= eTARGET_STATE_MOVING;
+    m_CurrentState          = eTARGET_STATE_MOVING;
 
-    m_Direction.x			= (rand() < (RAND_MAX / 2)) ? -1.0f : 1.0f;
-    m_Direction.y			= 0.0f;
+    m_Direction.x           = (rand() < (RAND_MAX / 2)) ? -1.0f : 1.0f;
+    m_Direction.y           = 0.0f;
 
-    m_Position.x			= 0.0f;
-    m_Position.y			= 0.0f;
+    m_Position.x            = 0.0f;
+    m_Position.y            = 0.0f;
 
-    m_UserDesiredVelocity.x	= 0.0f;
-    m_UserDesiredVelocity.y	= 0.0f;
+    m_UserDesiredVelocity.x = 0.0f;
+    m_UserDesiredVelocity.y = 0.0f;
 }
 
 //
@@ -95,8 +95,8 @@ float CTarget::GetMaxAngularVelocity()
 
 void CTarget::Explode()
 {
-    m_CurrentState		= eTARGET_STATE_EXPLODING;
-    m_ExplosionTimeLeft	= GetNumSecondsToExplode();
+    m_CurrentState      = eTARGET_STATE_EXPLODING;
+    m_ExplosionTimeLeft = GetNumSecondsToExplode();
 }
 
 //
@@ -122,12 +122,12 @@ void CTarget::Move(float timestep)
                     // by a small amount, and then move forward at our maximum speed
                     //
 
-                    float max_angular_velocity	= GetMaxAngularVelocity();
-                    float max_speed				= GetMaxSpeed();
+                    float max_angular_velocity  = GetMaxAngularVelocity();
+                    float max_speed             = GetMaxSpeed();
 
-                    float direction_change		= ((float)rand() / (float)RAND_MAX) * max_angular_velocity * 2.0f;
-                    direction_change			-= max_angular_velocity; // Make direction_change be between max_angular_velocity and -max_angular_velocity
-                    direction_change			*= timestep;
+                    float direction_change      = ((float)rand() / (float)RAND_MAX) * max_angular_velocity * 2.0f;
+                    direction_change            -= max_angular_velocity; // Make direction_change be between max_angular_velocity and -max_angular_velocity
+                    direction_change            *= timestep;
 
                     m_Direction.Rotate(direction_change);
 
@@ -135,11 +135,11 @@ void CTarget::Move(float timestep)
                     // less interesting at its edges. Modulate the steering force
                     // based on distance to the center squared
 
-                    CVector2	vector_to_center_of_world		= *m_pCurrentWorld->GetCenter() - m_Position;
-                    float		distance_to_center_of_world		= vector_to_center_of_world.GetLength();
+                    CVector2    vector_to_center_of_world       = *m_pCurrentWorld->GetCenter() - m_Position;
+                    float       distance_to_center_of_world     = vector_to_center_of_world.GetLength();
 
-                    CVector2	center_steering					= vector_to_center_of_world;
-                    float		center_steering_amount			= distance_to_center_of_world * distance_to_center_of_world * TargetSteerToCenterOfWorldFactor;
+                    CVector2    center_steering                 = vector_to_center_of_world;
+                    float       center_steering_amount          = distance_to_center_of_world * distance_to_center_of_world * TargetSteerToCenterOfWorldFactor;
 
                     center_steering.Normalize(center_steering_amount);
 
@@ -160,8 +160,8 @@ void CTarget::Move(float timestep)
                     // Update our direction based on our desired velocity
                     //
 
-                    float user_desired_speed	= m_UserDesiredVelocity.GetLength();
-                    float max_speed				= GetMaxSpeed();
+                    float user_desired_speed    = m_UserDesiredVelocity.GetLength();
+                    float max_speed             = GetMaxSpeed();
 
                     if (user_desired_speed > 0.0f)
                     {
@@ -200,8 +200,8 @@ void CTarget::Move(float timestep)
 
             if (m_ExplosionTimeLeft < 0.0f)
             {
-                m_ExplosionTimeLeft	= 0.0f;
-                m_CurrentState		= eTARGET_STATE_FINISHED_EXPLODING;
+                m_ExplosionTimeLeft = 0.0f;
+                m_CurrentState      = eTARGET_STATE_FINISHED_EXPLODING;
             }
 
             // Fall through to the next case
@@ -226,14 +226,14 @@ void CTarget::Move(float timestep)
     // Simple logic to keep us within the world
     //
 
-    float my_half_size		= GetSize() / 2.0f;
-    float world_half_size	= m_pCurrentWorld->GetSize() / 2.0f;
+    float my_half_size      = GetSize() / 2.0f;
+    float world_half_size   = m_pCurrentWorld->GetSize() / 2.0f;
 
-    float furthest_negative	= -world_half_size	+ my_half_size;
-    float furthest_positive	= world_half_size	- my_half_size;
+    float furthest_negative = -world_half_size  + my_half_size;
+    float furthest_positive = world_half_size   - my_half_size;
 
-    m_Position.x			= Clamp(m_Position.x, furthest_negative, furthest_positive);
-    m_Position.y			= Clamp(m_Position.y, furthest_negative, furthest_positive);
+    m_Position.x            = Clamp(m_Position.x, furthest_negative, furthest_positive);
+    m_Position.y            = Clamp(m_Position.y, furthest_negative, furthest_positive);
 }
 
 //
@@ -242,9 +242,9 @@ void CTarget::Move(float timestep)
 
 int CTarget::Draw(CGlView *gl_view)
 {
-    eTargetTexture	texture_to_use		= eTARGET_TEXTURE_NORMAL;
-    float			target_half_size	= GetSize() / 2.0f;
-    float			texture_alpha		= 1.0f;
+    eTargetTexture  texture_to_use      = eTARGET_TEXTURE_NORMAL;
+    float           target_half_size    = GetSize() / 2.0f;
+    float           texture_alpha       = 1.0f;
 
     switch (m_CurrentState)
     {
@@ -260,13 +260,13 @@ int CTarget::Draw(CGlView *gl_view)
             texture_to_use = eTARGET_TEXTURE_EXPLOSION;
 
             // Make the explosion scale and fade over time
-            float explosion_fraction_complete	= (GetNumSecondsToExplode() - m_ExplosionTimeLeft) / GetNumSecondsToExplode();
+            float explosion_fraction_complete   = (GetNumSecondsToExplode() - m_ExplosionTimeLeft) / GetNumSecondsToExplode();
 
-            float min_explosion_size			= target_half_size;
-            float max_explosion_size			= min_explosion_size * TargetExplosionSizeFactor;
-            target_half_size					= ((max_explosion_size - min_explosion_size) * explosion_fraction_complete) + min_explosion_size;
+            float min_explosion_size            = target_half_size;
+            float max_explosion_size            = min_explosion_size * TargetExplosionSizeFactor;
+            target_half_size                    = ((max_explosion_size - min_explosion_size) * explosion_fraction_complete) + min_explosion_size;
 
-            texture_alpha						= 1.0f - explosion_fraction_complete;
+            texture_alpha                       = 1.0f - explosion_fraction_complete;
 
             break;
         }

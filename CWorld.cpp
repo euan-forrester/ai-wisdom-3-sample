@@ -12,25 +12,25 @@
 // Tuning constants
 //
 
-const float MissileStartPositionFactor	= 0.25f;		// Where to start the missile from, as a fraction along our y axis
-const float TargetStartPositionFactor	= -0.25f;		// Where to start the target from, as a fraction along our y axis
+const float MissileStartPositionFactor  = 0.25f;        // Where to start the missile from, as a fraction along our y axis
+const float TargetStartPositionFactor   = -0.25f;       // Where to start the target from, as a fraction along our y axis
 
-const float WorldSize					= 7500.0f;//10000.0f;		// Size of the world in world units
+const float WorldSize                   = 7500.0f;//10000.0f;       // Size of the world in world units
 
-const float BackgroundZDepth			= -2.0f;		// Z depth to draw the background at
+const float BackgroundZDepth            = -2.0f;        // Z depth to draw the background at
 
 // Extents of the textures used for the missile and target
-const int	MissileTextureHeight		= 64;
-const int	MissileTextureWidth			= 32;
-const int	MissileTextureBitDepth		= 32;
+const int   MissileTextureHeight        = 64;
+const int   MissileTextureWidth         = 32;
+const int   MissileTextureBitDepth      = 32;
 
-const int	TargetTextureHeight			= 32;
-const int	TargetTextureWidth			= 32;
-const int	TargetTextureBitDepth		= 32;
+const int   TargetTextureHeight         = 32;
+const int   TargetTextureWidth          = 32;
+const int   TargetTextureBitDepth       = 32;
 
-const int	ExplosionTextureHeight		= 64;
-const int	ExplosionTextureWidth		= 64;
-const int	ExplosionTextureBitDepth	= 32;
+const int   ExplosionTextureHeight      = 64;
+const int   ExplosionTextureWidth       = 64;
+const int   ExplosionTextureBitDepth    = 32;
 
 CWorld::CWorld()
 {
@@ -50,8 +50,8 @@ CWorld::CWorld()
     target_texture_filename[eTARGET_TEXTURE_NORMAL].LoadString(IDS_TARGET_TEXTURE);
     target_texture_filename[eTARGET_TEXTURE_EXPLOSION].LoadString(IDS_EXPLOSION_TEXTURE);
 
-    m_Center.x	= 0.0f;
-    m_Center.y	= 0.0f;
+    m_Center.x  = 0.0f;
+    m_Center.y  = 0.0f;
 
     m_Missile.SetCurrentWorld(this);
     m_Target.SetCurrentWorld(this);
@@ -66,8 +66,8 @@ CWorld::CWorld()
         m_Target.SetTexture(texture_directory + target_texture_filename[i], i, TargetTextureWidth, TargetTextureHeight, TargetTextureBitDepth);
     }
 
-    m_Missile.SetTexture(texture_directory	+ missile_texture_filename[eMISSILE_TEXTURE_EXPLOSION],	eMISSILE_TEXTURE_EXPLOSION,	ExplosionTextureWidth,	ExplosionTextureHeight,	ExplosionTextureBitDepth);
-    m_Target.SetTexture(texture_directory	+ target_texture_filename[eTARGET_TEXTURE_EXPLOSION],	eTARGET_TEXTURE_EXPLOSION,	ExplosionTextureWidth,	ExplosionTextureHeight,	ExplosionTextureBitDepth);
+    m_Missile.SetTexture(texture_directory  + missile_texture_filename[eMISSILE_TEXTURE_EXPLOSION], eMISSILE_TEXTURE_EXPLOSION, ExplosionTextureWidth,  ExplosionTextureHeight, ExplosionTextureBitDepth);
+    m_Target.SetTexture(texture_directory   + target_texture_filename[eTARGET_TEXTURE_EXPLOSION],   eTARGET_TEXTURE_EXPLOSION,  ExplosionTextureWidth,  ExplosionTextureHeight, ExplosionTextureBitDepth);
 
     m_Missile.SetTarget(&m_Target);
 
@@ -88,8 +88,8 @@ void CWorld::ResetMissileAndTarget()
     m_Missile.Reset();
     m_Target.Reset();
 
-    m_Missile.SetPosition(0.0f,	GetSize()	* MissileStartPositionFactor);
-    m_Target.SetPosition(0.0f,	GetSize()	* TargetStartPositionFactor);
+    m_Missile.SetPosition(0.0f, GetSize()   * MissileStartPositionFactor);
+    m_Target.SetPosition(0.0f,  GetSize()   * TargetStartPositionFactor);
 }
 
 //

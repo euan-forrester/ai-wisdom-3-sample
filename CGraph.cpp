@@ -19,11 +19,11 @@
 
 CGraph::CGraph(int num_control_points, float min_x_value, float max_x_value)
 {
-    m_NumControlPoints	= num_control_points;
-    m_MinXValue			= min_x_value;
-    m_MaxXValue			= max_x_value;
+    m_NumControlPoints  = num_control_points;
+    m_MinXValue         = min_x_value;
+    m_MaxXValue         = max_x_value;
 
-    m_pControlPoint		= new float[m_NumControlPoints];
+    m_pControlPoint     = new float[m_NumControlPoints];
 
     ASSERT(m_NumControlPoints > 1);
     ASSERT((m_MinXValue < m_MaxXValue) && !Equal(m_MinXValue, m_MaxXValue));
@@ -54,10 +54,10 @@ float CGraph::GetValue(float x_value)
         // Our x value is inside of our range, so we must linearily interpolate
         //
 
-        float	exact_control_point			= (x_value - m_MinXValue) / ((m_MaxXValue - m_MinXValue) / (float)(m_NumControlPoints - 1));
-        int		left_index					= (int)exact_control_point;
-        int		right_index					= left_index + 1;
-        float	fractional_control_point	= exact_control_point - (float)left_index;
+        float   exact_control_point         = (x_value - m_MinXValue) / ((m_MaxXValue - m_MinXValue) / (float)(m_NumControlPoints - 1));
+        int     left_index                  = (int)exact_control_point;
+        int     right_index                 = left_index + 1;
+        float   fractional_control_point    = exact_control_point - (float)left_index;
 
         float y_value = m_pControlPoint[left_index] + (m_pControlPoint[right_index] - m_pControlPoint[left_index]) * fractional_control_point;
 
