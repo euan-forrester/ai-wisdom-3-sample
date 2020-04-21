@@ -2,7 +2,7 @@ This code was written in 2005 for the CD-ROM that accompanied the book AI Game P
 
 It's the companion to the article Intelligent Steering Using Adaptive PID Controllers. 
 
-I also wrote simpler version of this demo showing a non-adaptive PID controller for the preceding article: https://github.com/euan-forrester/ai-wisdom-2-sample
+A simpler version of this demo showing a non-adaptive PID controller can be found here: https://github.com/euan-forrester/ai-wisdom-2-sample
 
 ## Some GIFs
 
@@ -52,11 +52,11 @@ This demo still shows the basics of model reference adaptive control and the cod
 
 ## Running the demo
 
-### Requirements
+#### Requirements
 
 This sample runs on Windows, and can run on Windows 10: see the Releases tab for more info and to download the executable. I haven't tried compiling it in a long time! But at the time I used MS VC.Net 2003.
 
-## Usage notes
+#### Usage notes
 
 - The demo starts off with a non-adaptive controller to give you a feel for what's going on. The missile is attempting to steer towards the target, and you can affect the handling of the missile by tuning the "Missile Rotational Drag," "Missile Max Angular Acceleration," and "Missile PID output scale" sliders. Notice how when you change the settings, the missile no longer is able to track the target as effectively.
 
