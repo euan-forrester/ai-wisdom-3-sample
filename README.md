@@ -16,7 +16,9 @@ You can find a more in-depth explanation of how a PID controller works and what'
 
 Here are the help screens within the demo that explain the P, I, and D terms:
 
-![Explanation of the P term](/images/p-explanation.png) ![Explanation of the I term](/images/i-explanation.png) ![Explanation of the D term](/images/d-explanation.png)
+![Explanation of the P term](/images/p-explanation.png)
+![Explanation of the I term](/images/i-explanation.png)
+![Explanation of the D term](/images/d-explanation.png)
 
 #### Changing how the missile handles
 
