@@ -14,10 +14,18 @@ The demo opens with the same setup as the previous demo: a missile steered by a 
 
 You can find a more in-depth explanation of how a PID controller works and what's going on here: https://github.com/euan-forrester/ai-wisdom-2-sample
 
-Here are the help screens within the demo that explain the P, I, and D terms:
+For a quick reference here are the help screens within the demo:
+
+The P term:
 
 ![Explanation of the P term](/images/p-explanation.png)
+
+the I term:
+
 ![Explanation of the I term](/images/i-explanation.png)
+
+and the D term:
+
 ![Explanation of the D term](/images/d-explanation.png)
 
 #### Changing how the missile handles
