@@ -26,13 +26,15 @@ Let's change its rotational drag because that has a big visual impact on how it 
 
 ![Letting the missile adapt to the change in its handling](/images/settings-adaptation.gif)
 
-Now let's turn on the adaptive PID controller and see if it will change our PID settings in response to our change in the missile's handling. It takes a while, but it eventually scales up the P term (and the D term a little bit), which is the correct response: turning harder towards the target to overcome the added rotational drag. It becomes better at following the target, although not perfect as there's still a bit of overshoot that we can see at the end of the GIF.
+Now let's turn on the adaptive PID controller and see if it will change our PID settings in response to our change in the missile's handling. Watch the 3 sliders on the bottom right, under Missile Steering. It takes a while, but it eventually scales up the P term (and the D term a little bit), which is the correct response: turning harder towards the target to overcome the added rotational drag. It still turns slowly but it becomes a bit faster and thus a bit better at following the target. Although it's not perfect as there's still a bit of overshoot that we can see at the end of the GIF.
 
 The limitations of this demo make this happen not quite as nicely as we'd like, though:
 - We made a large sudden change in the missile's handling in order to make it visually obvious for this demonstration. That makes it harder for the adaptation to find new parameters that work. In a production environment a more complex physics model would be used, which would more slowly change its handling charactistics as the missile changed speed or encountered different air pressure as it changed altitude.
 - The target moves in a discontinuous way, which makes the error term discontinuous and the derivative of the error term spikey. This makes adaptation difficult because we're dividing by this derivative, further amplifying its spikey discontinuous nature. In a production environment great care must be taken to make the error term continuous: blending between different target locations and possibly even just zeroing out the error derivative if the target must pop from position to position.
 
 In this case, the "correct" adaptation happened because of this: the target was moving quickly near to the missile which caused the error and its derivative to skyrocket. The system then kept going with the new larger P term. It was the correct response but not necessarily for the correct reason.
+
+This demo still shows the basics of model reference adaptive control and the code can be used as the starting point for a more production-ready application.
 
 ## Running the demo
 
@@ -58,4 +60,4 @@ This sample runs on Windows, and can run on Windows 10: see the Releases tab for
 
 - Many tuning values, such as the round-robin timeslice, and the clamps on the P, I, and D coefficents, can be found at the top of MainDlg.cpp. The model can be found at the top of CMissile.cpp. These tuning values are present only in the code to avoid cluttering the GUI.
 
-- Because this demo is so simple, the D term has by far the largest effect on the missile's handling; enough damping is sufficient to correct the missile's behavior no matter how its handling is set. Also, there are no external forces to induce steady-state error, and so the I term is not very useful. Nevertheless, the basics of model reference adaptive control are still shown, and the code can be used as the starting point for a more robust application.
+- Because this demo is so simple, the D term has by far the largest effect on the missile's handling; enough damping is sufficient to correct the missile's behavior no matter how its handling is set. Also, there are no external forces to induce steady-state error, and so the I term is not very useful. 
