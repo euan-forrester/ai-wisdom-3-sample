@@ -26,7 +26,7 @@ Let's change its rotational drag because that has a big visual impact on how it 
 
 ![Letting the missile adapt to the change in its handling](/images/settings-adaptation.gif)
 
-Now let's turn on the adaptive PID controller and see if it will change our PID settings in response to our change in the missile's handling. Watch the 3 sliders on the bottom right, under Missile Steering. It takes a while, but it eventually scales up the P term (and the D term a little bit), which is the correct response: turning harder towards the target to overcome the added rotational drag. It still turns slowly but it becomes a bit faster and thus a bit better at following the target. Although it's not perfect as there's still a bit of overshoot that we can see at the end of the GIF.
+Now let's turn on the adaptive PID controller and see if it will change our PID settings in response to our change in the missile's handling. Watch the 3 sliders on the bottom right, under Missile Steering. It takes a while, but it eventually scales up the P term (and the D term a little bit), which is the correct response: turning harder towards the target to overcome the added rotational drag. It still turns slowly but it becomes a bit faster and thus a bit better at following the target. 
 
 The limitations of this demo make this happen not quite as nicely as we'd like, though:
 - We made a large sudden change in the missile's handling in order to make it visually obvious for this demonstration. That makes it harder for the adaptation to find new parameters that work. In a production environment a more complex physics model would be used, which would more slowly change its handling charactistics as the missile changed speed or encountered different air pressure as it changed altitude.
